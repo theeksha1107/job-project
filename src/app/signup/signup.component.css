@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans', sans-serif;
+    background: #201b2c;
+    color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container for both login and signup */
+.container {
+    width: 100%;
+    max-width: 900px; /* Ensuring max-width for large screens */
+    height: 100%;
+    max-height: 650px; /* Limiting height for large screens */
+    background-color: #FFFFFF;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 30px rgba(217, 255, 2, 0.2);
+    border-radius: 20px;
+    background-image: url('https://i.postimg.cc/pdL2vfK9/bg.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Common layout for login and signup */
+.sign-up, .login-container {
+    width: 100%;
+    max-width: 450px; /* Restricting max width for both forms */
+    padding: 20px;
+    background: rgb(255, 230, 0);
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px #00000056;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+/* Heading for both sections */
+.heading {
+    font-family: calibri;
+    color: rgba(30, 30, 30, 1);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Input text styles */
+.text {
+    width: 100%;
+    height: 50px;
+    box-shadow: 2px 6px 18px rgba(66, 57, 238, .3);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.text input {
+    height: 40px;
+    width: 80%;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    margin: 5px;
+}
+
+.text img {
+    margin-left: 20px;
+}
+
+/* Button Styling */
+button {
+    width: 200px;
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(-30deg, #3B02ED, #8E2AE0 55%);
+    box-shadow: 2px 6px 16px rgba(66, 57, 238, .3);
+    color: #FFFFFF;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all .3s ease;
+    margin-top: 20px;
+}
+
+button:active {
+    transform: scale(1.1);
+}
+
+/* Checkbox and conditions */
+.conditions {
+    font-family: myriad pro;
+    color: #000000;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.conditions a {
+    color: #7D22E3;
+    font-weight: 500;
+}
+
+.terms {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive Adjustments */
+@media only screen and (max-width: 1080px) {
+    .container {
+        width: 90%; /* Slightly reduce container width on smaller screens */
+        height: auto; /* Let the container height adjust based on content */
+    }
+    .sign-up, .login-container {
+        padding: 15px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 85%; /* Further reduce container width for mobile */
+    }
+
+    .text {
+        width: 90%; /* Make inputs more responsive */
+    }
+
+    .heading {
+        font-size: 1.8rem; /* Slightly smaller text for smaller screens */
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .text {
+        width: 90%; /* More space for the input fields */
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .container {
+        width: 95%;
+    }
+
+    .heading {
+        text-align: center;
+        font-size: 1.6rem; /* Adjust heading for small screens */
+    }
+
+    .conditions {
+        text-align: center;
+    }
+
+    .text {
+        width: 100%; /* Allow input fields to take full width */
+    }
+}

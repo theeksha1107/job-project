@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <!-- Search Bar with Filters -->
+      <div class="search-bar">
+        <input type="text" [(ngModel)]="searchText" class="form-control" placeholder="Search Jobs..." />
+        <div class="filter-dropdowns">
+          <!-- Skillset Filter -->
+          <select [(ngModel)]="skillset" class="form-control">
+            <option value="">Skillset</option>
+            <option *ngFor="let skill of skillsets" [value]="skill">{{ skill }}</option>
+          </select>
+          <!-- City Filter -->
+          <select [(ngModel)]="city" class="form-control">
+            <option value="">City</option>
+            <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+          </select>
+          <!-- Experience Filter -->
+          <select [(ngModel)]="experience" class="form-control">
+            <option value="">Experience</option>
+            <option *ngFor="let exp of experiences" [value]="exp">{{ exp }}</option>
+          </select>
+          <!-- Work Mode Filter -->
+          <select [(ngModel)]="workMode" class="form-control">
+            <option value="">Work Mode</option>
+            <option *ngFor="let mode of workModes" [value]="mode">{{ mode }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Job Listings -->
+  <div class="row">
+    <div class="col-12" *ngIf="filteredJobs.length > 0">
+      <div *ngFor="let job of filteredJobs" class="job-listing" (click)="openJobDetails(job)">
+        <div class="job-info">
+          <h4>{{ job.title }} <span class="company-name">- {{ job.company }}</span></h4>
+          <p><strong>Location:</strong> {{ job.location }} | <strong>Experience:</strong> {{ job.experience }} | <strong>Work Mode:</strong> {{ job.workMode }}</p>
+          <p><strong>Skills:</strong> {{ job.skillset }}</p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="filteredJobs.length === 0" class="no-results">
+      <p>No Jobs Found</p>
+    </div>
+  </div>
+
+  <!-- Job Details Modal with Resume Upload -->
+  <div *ngIf="selectedJob" class="job-details-modal">
+    <div class="job-details">
+      <span class="close-modal" (click)="closeJobDetails()">&times;</span>
+      <h3>{{ selectedJob.title }} at {{ selectedJob.company }}</h3>
+      <p><strong>Location:</strong> {{ selectedJob.location }}</p>
+      <p><strong>Experience:</strong> {{ selectedJob.experience }}</p>
+      <p><strong>Work Mode:</strong> {{ selectedJob.workMode }}</p>
+      <p><strong>Skills Required:</strong> {{ selectedJob.skillset }}</p>
+      <p><strong>Description:</strong> {{ selectedJob.description }}</p>
+      <p><strong>Responsibilities:</strong> {{ selectedJob.responsibilities }}</p>
+      <p><strong>Contact:</strong> {{ selectedJob.contact }}</p>
+      <p><strong>Website:</strong> {{ selectedJob.website }}</p>
+
+      <!-- Resume Upload Form -->
+      <div>
+        <input type="text" [(ngModel)]="applicantName" placeholder="Your Name" class="form-control" />
+        <input type="email" [(ngModel)]="applicantEmail" placeholder="Your Email" class="form-control" />
+        <input type="file" (change)="onFileSelected($event)" accept=".pdf" class="form-control" />
+        <button class="apply-button" (click)="applyForJob()">Apply Now</button>
+      </div>
+    </div>
+  </div>
+</div>

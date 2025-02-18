@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="sign-up">
+        <h1 class="heading">Hello, friend!</h1>
+
+        <form (submit)="onRegister(nameInput, emailInput, passwordInput, confirmPasswordInput)">
+            <div class="text">
+                <img src="https://i.postimg.cc/1zgS8WTF/user.png" alt="icon" height="20">
+                <input type="text" id="name" placeholder="Enter your full name" #nameInput required />
+            </div>
+
+            <div class="text">
+                <img src="https://i.postimg.cc/DZBPRgvC/email.png" alt="icon" height="12">
+                <input type="email" id="email" placeholder="Enter your email" #emailInput required />
+            </div>
+
+            <div class="text">
+                <img src="https://i.postimg.cc/Nj5SDK4q/password.png" alt="icon" height="20">
+                <input type="password" id="password" placeholder="Create a password" #passwordInput required />
+            </div>
+
+            <div class="text">
+                <img src="https://i.postimg.cc/Nj5SDK4q/password.png" alt="icon" height="20">
+                <input type="password" id="confirm-password" placeholder="Confirm your password" #confirmPasswordInput required />
+            </div>
+
+            <div class="terms">
+                <input type="checkbox">
+                <p class="conditions">I read and agree to <a href="#">terms & conditions</a></p>
+            </div>
+
+            <button type="submit" class="signup-btn">CREATE ACCOUNT</button>
+        </form>
+
+        <p class="conditions">Already have an account? <a href="">Sign in</a></p>
+    </div>
+
+    <div class="text-container">
+        <h1>Glad to see you!</h1>
+        <p>Welcome, please fill in the blanks for sign up</p>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<main class="main-login">
+  <div class="left-login">
+    <h1>Login<br>And join our team</h1>
+    <img src="https://www.pinclipart.com/picdir/big/2-22120_clip-art-transparent-library-jobs-job-announcement-find.png" class="left-login-img" alt="astronaut image">
+  </div>
+
+  <div class="right-login">
+    <form (ngSubmit)="onLogin()">
+      
+      <div class="textfield">
+        <label for="email">Email.id</label>
+        <input
+          type="email"
+          placeholder="Enter your email"
+          name="email"
+          [(ngModel)]="email"
+          required
+        />
+      </div>
+
+      <div class="textfield">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          placeholder="Enter your password"
+          name="password"
+          [(ngModel)]="password"
+          required
+        />
+      </div>
+
+      <button class="btn-login" type="submit">Login</button>
+
+      <div class="login-links">
+        <a [routerLink]="['/signup']">Sign Up</a>
+        <a [routerLink]="['/forgot-password']">Forgot Password?</a>
+      </div>
+    </form>
+  </div>
+</main>

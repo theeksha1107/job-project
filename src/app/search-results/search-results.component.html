@@ -1,0 +1,11 @@
+<div class="container">
+  <h2>Search Results for "{{ searchQuery }}"</h2>
+  <ul *ngIf="results.length; else noResults">
+    <li *ngFor="let result of results">
+      <a [routerLink]="result.route">{{ result.title }}</a>
+    </li>
+  </ul>
+  <ng-template #noResults>
+    <p>No results found.</p>
+  </ng-template>
+</div>

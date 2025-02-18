@@ -1,0 +1,255 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header Section */
+header {
+  background-color: #2a2a2a;
+  color: #fff;
+  padding: 30px 40px;
+  border-bottom: 5px solid #ffbc00;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: #ffbc00;
+  text-align: left;
+  margin: 0;
+}
+
+header .search-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+header .search-bar input {
+  width: 50%;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+header .search-bar input:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+header .search-bar button {
+  background-color: #007BFF;
+  color: white;
+  padding: 14px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+header .search-bar button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+header nav {
+  margin-top: 30px;
+}
+
+header nav .nav-item {
+  margin-right: 30px;
+  display: inline-block;
+}
+
+header nav .nav-item a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+header nav .nav-item a:hover {
+  background-color: #ffbc00;
+  color: #2a2a2a;
+  transform: scale(1.1);
+}
+
+/* Filter Container Styles */
+.filter-container {
+  display: none;
+  background-color: #fff;
+  padding: 25px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-top: 30px;
+  transition: all 0.3s ease;
+}
+
+.filter-container.expanded {
+  display: block;
+}
+
+/* Filter Inputs Styling */
+.filter-container input,
+.filter-container select {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.filter-container input:focus,
+.filter-container select:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+.filter-container .filter-header {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Button Styling */
+.search-btn {
+  background-color: #007BFF;
+  border: none;
+  color: white;
+  padding: 16px 30px;
+  font-size: 18px;
+  border-radius: 50%;
+  margin-left: 15px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+}
+
+.search-btn i {
+  font-size: 20px;
+}
+
+/* Apply Filters Button */
+.apply-filters {
+  background-color: #007BFF;
+  color: white;
+  padding: 16px 30px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.apply-filters:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Main Content Section */
+main {
+  margin-top: 40px;
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  min-height: 450px;
+}
+
+/* Footer Section */
+footer {
+  background-color: #2a2a2a;
+  color: #fff;
+  padding: 25px;
+  text-align: center;
+  position: relative;
+}
+
+footer p {
+  font-size: 14px;
+  margin: 0;
+  color: #ccc;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  header .search-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  header .search-bar input {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  header nav .nav-item {
+    margin-right: 0;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .filter-container {
+    margin-top: 20px;
+  }
+
+  .filter-container input,
+  .filter-container select {
+    width: 100%;
+  }
+
+  .apply-filters {
+    width: 100%;
+  }
+
+  footer {
+    padding: 15px;
+  }
+}
+
+/* Vibrant Hover Effect for Navigation Items */
+header nav .nav-item a {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+header nav .nav-item a:hover {
+  color: #ffbc00;
+  transform: scale(1.1);
+}
+
+/* Hover Effects for Filters */
+.filter-container input:hover,
+.filter-container select:hover {
+  border-color: #007BFF;
+}
+
+/* Active State for Filters */
+.filter-container input:focus,
+.filter-container select:focus {
+  border-color: #0056b3;
+}

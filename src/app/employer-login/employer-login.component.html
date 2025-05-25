@@ -1,3 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobTalk</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <!-- Header Section -->
+  <header class="container-fluid py-3 shadow-lg text-center">
+    <div class="container d-flex align-items-center justify-content-between">
+      <h1 class="fs-3 fw-bold text-brand">JobTalk</h1>
+      <button class="hamburger" (click)="toggleMenu()" aria-label="Toggle navigation">
+        <i class="fas fa-bars" *ngIf="!isMenuOpen"></i>
+        <i class="fas fa-times" *ngIf="isMenuOpen"></i>
+      </button>
+      <nav class="nav" [ngClass]="{'nav-open': isMenuOpen}">
+        <ul class="nav-list">
+          <li class="nav-item"><a class="nav-link" routerLink="/home" (click)="closeMenu()">Home</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/signup" (click)="closeMenu()">Sign-up</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/employer-login" (click)="closeMenu()">Employer Login</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/job-seeker-login" (click)="closeMenu()">Jobseeker Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
 <main class="main-login">
   <div class="left-login">
     <h1>Login<br>And join our team</h1>
@@ -8,7 +36,7 @@
     <form (ngSubmit)="onLogin()">
       
       <div class="textfield">
-        <label for="email">Email.id</label>
+        <label for="email">Email ID</label>
         <input
           type="email"
           placeholder="Enter your email"
@@ -38,3 +66,7 @@
     </form>
   </div>
 </main>
+<!-- Footer Section -->
+<footer class="container-fluid bg-dark text-white text-center py-3">
+  <p class="mb-0">© 2025 JobTalk. All rights reserved.</p>
+</footer>

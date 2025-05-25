@@ -2,16 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router,RouterModule, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-employer-login',
   standalone: true, // Mark this as a standalone component
-  imports: [FormsModule,RouterModule], // Import FormsModule
+  imports: [FormsModule,RouterModule,CommonModule], // Import FormsModule
   templateUrl: './employer-login.component.html',
   styleUrls: ['./employer-login.component.css'], // Corrected the property
 })
 export class EmployerLoginComponent implements OnInit  {
-
+  isMenuOpen = false;
     email: string = '';
     password: string = '';
   
@@ -32,11 +33,11 @@ export class EmployerLoginComponent implements OnInit  {
   
       const loginData = { email: this.email, password: this.password };
   
-      this.http.post('http://127.0.0.1:8000/login', loginData).subscribe({
+      this.http.post('http://localhost:8000/login', loginData).subscribe({
         next: (response) => {
           console.log('Login successful:', response);
           alert('Login successful');
-          this.router.navigate(['/home']);
+          this.router.navigate(['/employer-p1']);
         },
         error: (error: HttpErrorResponse) => {
           console.error('Login failed:', error);
@@ -48,5 +49,13 @@ export class EmployerLoginComponent implements OnInit  {
         },
       });
     }
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
+    }
+    
+    closeMenu() {
+      this.isMenuOpen = false;
+    }
+    
   }
   

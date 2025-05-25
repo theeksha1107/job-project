@@ -2,15 +2,17 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router,RouterModule} from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-signup',
-  imports: [FormsModule,RouterModule],
+  imports: [FormsModule,RouterModule,CommonModule],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
+  isMenuOpen = false;
   constructor(private http: HttpClient, private router: Router) {}
 
   onRegister(nameInput: HTMLInputElement, emailInput: HTMLInputElement, passwordInput: HTMLInputElement, confirmPasswordInput: HTMLInputElement) {
@@ -21,13 +23,13 @@ export class SignupComponent {
       confirm_password: confirmPasswordInput.value
     };
 
-    this.http.post('http://127.0.0.1:8000/register', registerData).subscribe({
+    this.http.post('http://localhost:8000/register', registerData).subscribe({
       next: (response) => {
         console.log('Registration successful:', response);
         if (response) {  // Ensure response is valid
           alert('Registration successful. Redirecting to login...');
           console.log('Redirecting now...');
-          this.router.navigate(['/employee-login']);
+          this.router.navigate(['/home']);
         }
       },
       error: (error) => {
@@ -36,4 +38,12 @@ export class SignupComponent {
       }
     });
   }
+  
+toggleMenu() {
+  this.isMenuOpen = !this.isMenuOpen;
+}
+
+closeMenu() {
+  this.isMenuOpen = false;
+}
 }    

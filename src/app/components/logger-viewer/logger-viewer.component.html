@@ -1,0 +1,13 @@
+<div class="logger-container">
+    <h2>📄 Logs Viewer</h2>
+    
+    <div class="logs-file-view">
+      <pre>{{ logger.getLogs().join('\n') || 'No logs yet...' }}</pre>
+    </div>
+  
+    <div class="logger-actions">
+      <button (click)="downloadLogs()">Download Logs.txt</button>
+      <button (click)="clearLogs()">Clear Logs</button>
+    </div>
+  </div>
+  

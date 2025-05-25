@@ -1,0 +1,506 @@
+<!-- Modern Header Section with Original Menus -->
+<header class="container-fluid py-3 shadow-lg text-center">
+    <div class="container d-flex align-items-center justify-content-between">
+      <h1 class="fs-3 fw-bold text-brand">JobTalk</h1>
+      <button class="hamburger" (click)="toggleNavbar()" aria-label="Toggle navigation">
+        <i class="fas fa-bars" *ngIf="!isNavbarOpen"></i>
+        <i class="fas fa-times" *ngIf="isNavbarOpen"></i>
+      </button>
+    </div>
+  </header>
+  
+  <!-- Desktop Top Navbar -->
+  <nav class="navbar" [ngClass]="{'nav-open': isNavbarOpen}">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item dropdown" (mouseenter)="openDropdown('userDropdown')" (mouseleave)="closeDropdown('userDropdown')">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown">Jobs & Responses</a>
+        <ul class="dropdown-menu" [ngClass]="{'show': openDropdownId === 'userDropdown'}">
+          <li><a class="dropdown-item" routerLink="/post_hot_job">Post a Hot Vacancy</a></li>
+          <li><a class="dropdown-item" routerLink="/employer-login">Post an Internship</a></li>
+          <li><a class="dropdown-item" routerLink="/job-seeker-login">Post a Classified</a></li>
+          <li><a class="dropdown-item" routerLink="/job-seeker-login">Manage Jobs & Responses</a></li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown" (mouseenter)="openDropdown('resdexDropdown')" (mouseleave)="closeDropdown('resdexDropdown')">
+        <a class="nav-link dropdown-toggle active" href="#" id="resdexDropdown">Resdex</a>
+        <ul class="dropdown-menu" [ngClass]="{'show': openDropdownId === 'resdexDropdown'}">
+          <li><a class="dropdown-item active" routerLink="/search_resume">Search Resumes</a></li>
+          <li><a class="dropdown-item" routerLink="/search_resume">Sent NVite</a></li>
+          <li><a class="dropdown-item" routerLink="/search_resume">Manage Searches</a></li>
+          <li><a class="dropdown-item" routerLink="/search_resume">Folders</a></li>
+          <li><a class="dropdown-item" routerLink="/search_resume">Resdex Requirements</a></li>
+          <li><a class="dropdown-item" routerLink="/search_resume">Mail Center</a></li>
+          <li><a class="dropdown-item" routerLink="/search_resume">E-mail Templates</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  
+  <!-- Mobile Navbar -->
+  <div class="navbar-collapse" [ngClass]="{'show': isNavbarOpen}">
+    <button class="close-btn" (click)="toggleNavbar()">
+      <i class="fas fa-times"></i>
+    </button>
+    <ul class="navbar-nav-mobile">
+      <li class="nav-item"><a class="nav-link-mobile" routerLink="/home" (click)="toggleNavbar()">Home</a></li>
+      <li class="nav-item"><a class="nav-link-mobile" routerLink="/post_hot_job" (click)="toggleNavbar()">Post a Hot Vacancy</a></li>
+      <li class="nav-item"><a class="nav-link-mobile" routerLink="/employer-login" (click)="toggleNavbar()">Post an Internship</a></li>
+      <li class="nav-item"><a class="nav-link-mobile" routerLink="/job-seeker-login" (click)="toggleNavbar()">Post a Classified</a></li>
+      <li class="nav-item"><a class="nav-link-mobile" routerLink="/job-seeker-login" (click)="toggleNavbar()">Manage Jobs & Responses</a></li>
+      <li class="nav-item"><a class="nav-link-mobile active" routerLink="/search_resume" (click)="toggleNavbar()">Search Resumes</a></li>
+      <li class="nav-item"><a class="nav-link-mobile" routerLink="/search_resume" (click)="toggleNavbar()">Sent NVite</a></li>
+      <li class="nav-item"><a class="nav-link-mobile" routerLink="/search_resume" (click)="toggleNavbar()">Manage Searches</a></li>
+      <li class="nav-item"><a class="nav-link-mobile" routerLink="/search_resume" (click)="toggleNavbar()">Folders</a></li>
+      <li class="nav-item"><a class="nav-link-mobile" routerLink="/search_resume" (click)="toggleNavbar()">Resdex Requirements</a></li>
+      <li class="nav-item"><a class="nav-link-mobile" routerLink="/search_resume" (click)="toggleNavbar()">Mail Center</a></li>
+      <li class="nav-item"><a class="nav-link-mobile" routerLink="/search_resume" (click)="toggleNavbar()">E-mail Templates</a></li>
+    </ul>
+  </div>
+  
+
+<!-- Search Container -->
+<div class="search-container">
+    <div class="page-header">
+        <h2 class="header">Advanced Resume Search</h2>
+        <p class="subtitle">Find the perfect candidate from our extensive database</p>
+    </div>
+
+    <form [formGroup]="searchForm" (ngSubmit)="search()" class="search-form">
+        <!-- Keyword Search Bar -->
+        <div class="keyword-search">
+            <div class="form-group">
+                <label>Keyword Search</label>
+                <input
+                    type="text"
+                    formControlName="keywords"
+                    placeholder="Enter skills, designation, or company (e.g., Java, Software Engineer, Google)"
+                />
+                <small>Separate multiple keywords with commas</small>
+            </div>
+        </div>
+
+        <!-- Step Content Sections -->
+        <div class="step-content">
+            <h3 class="section-title">IT Skills</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Add IT Skill</label>
+                    <input
+                        type="text"
+                        formControlName="itSkills"
+                        placeholder="e.g., Java, Python, Angular"
+                    />
+                    <small>Separate multiple skills with commas</small>
+                </div>
+                <div class="form-group">
+                    <label>Skill Experience</label>
+                    <div class="range-input">
+                        <input
+                            type="text"
+                            formControlName="minSkillExperience"
+                            placeholder="Min years"
+                        />
+                        <span>to</span>
+                        <input
+                            type="text"
+                            formControlName="maxSkillExperience"
+                            placeholder="Max years"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="step-content">
+            <h3 class="section-title">Total Experience</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Experience Range</label>
+                    <div class="range-input">
+                        <input
+                            type="text"
+                            formControlName="minExperience"
+                            placeholder="Min years"
+                        />
+                        <span>to</span>
+                        <input
+                            type="text"
+                            formControlName="maxExperience"
+                            placeholder="Max years"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="step-content">
+            <h3 class="section-title">Current Location</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Add Location</label>
+                    <input
+                        type="text"
+                        formControlName="location"
+                        placeholder="Enter location"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <div class="step-content">
+            <h3 class="section-title">Annual Salary</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Salary Range</label>
+                    <div class="range-input">
+                        <input type="text" formControlName="minSalary" placeholder="Min" />
+                        <span>to</span>
+                        <input type="text" formControlName="maxSalary" placeholder="Max" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="step-content">
+            <h3 class="section-title">Employment Details</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Department & Role</label>
+                    <input
+                        type="text"
+                        formControlName="departmentRole"
+                        placeholder="e.g., Software Development, Senior Developer"
+                    />
+                </div>
+                <div class="form-group">
+                    <label>Industry</label>
+                    <input
+                        type="text"
+                        formControlName="industry"
+                        placeholder="e.g., IT, Finance"
+                    />
+                </div>
+                <div class="form-group">
+                    <label>Company</label>
+                    <input
+                        type="text"
+                        formControlName="company"
+                        placeholder="Enter company name"
+                    />
+                </div>
+                <div class="form-group">
+                    <label>Notice Period</label>
+                    <select formControlName="noticePeriod">
+                        <option value="">All</option>
+                        <option value="Immediate">Immediate</option>
+                        <option value="15 days">15 days</option>
+                        <option value="30 days">30 days</option>
+                        <option value="90 days">90 days</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="step-content">
+            <h3 class="section-title">Education Details</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>UG Qualification</label>
+                    <input
+                        type="text"
+                        formControlName="ugQualification"
+                        placeholder="Enter degree and institute"
+                    />
+                </div>
+                <div class="form-group">
+                    <label>Education Type</label>
+                    <select formControlName="ugEducationType">
+                        <option value="">All</option>
+                        <option value="Full Time">Full Time</option>
+                        <option value="Part Time">Part Time</option>
+                        <option value="Correspondence">Correspondence</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Year of UG Completion</label>
+                    <div class="range-input">
+                        <input
+                            type="text"
+                            formControlName="ugFromYear"
+                            placeholder="From"
+                        />
+                        <span>to</span>
+                        <input type="text" formControlName="ugToYear" placeholder="To" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>PG Qualification</label>
+                    <input
+                        type="text"
+                        formControlName="pgQualification"
+                        placeholder="Enter degree and institute"
+                        [disabled]="noPgQualification"
+                    />
+                </div>
+                <div class="form-group">
+                    <label>Education Type</label>
+                    <select
+                        formControlName="pgEducationType"
+                        [disabled]="noPgQualification"
+                    >
+                        <option value="">All</option>
+                        <option value="Full Time">Full Time</option>
+                        <option value="Part Time">Part Time</option>
+                        <option value="Correspondence">Correspondence</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Year of PG Completion</label>
+                    <div class="range-input">
+                        <input
+                            type="text"
+                            formControlName="pgFromYear"
+                            placeholder="From"
+                            [disabled]="noPgQualification"
+                        />
+                        <span>to</span>
+                        <input
+                            type="text"
+                            formControlName="pgToYear"
+                            placeholder="To"
+                            [disabled]="noPgQualification"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>No PG Qualification</label>
+                    <input
+                        type="checkbox"
+                        [checked]="noPgQualification"
+                        (change)="togglePgQualification()"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <div class="step-content">
+            <h3 class="section-title">Diversity & Additional Details</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select formControlName="gender">
+                        <option value="">All Candidates</option>
+                        <option value="Male">Male Candidates</option>
+                        <option value="Female">Female Candidates</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Persons with Disabilities</label>
+                    <select formControlName="disability">
+                        <option value="">All</option>
+                        <option value="None">None</option>
+                        <option value="Visual Impairment">Visual Impairment</option>
+                        <option value="Hearing Impairment">Hearing Impairment</option>
+                        <option value="Physical Disability">Physical Disability</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Candidate Category</label>
+                    <select formControlName="category">
+                        <option value="">All</option>
+                        <option value="General">General</option>
+                        <option value="OBC">OBC</option>
+                        <option value="SC">SC</option>
+                        <option value="ST">ST</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Candidate Age</label>
+                    <div class="range-input">
+                        <input type="text" formControlName="minAge" placeholder="Min" />
+                        <span>to</span>
+                        <input type="text" formControlName="maxAge" placeholder="Max" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Resume Freshness</label>
+                    <select formControlName="resumeFreshness">
+                        <option value="">Any Time</option>
+                        <option value="today">Today</option>
+                        <option value="week">Last 7 Days</option>
+                        <option value="month">Last 30 Days</option>
+                        <option value="quarter">Last 3 Months</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="step-content">
+            <h3 class="section-title">Work Details</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Job Type</label>
+                    <select formControlName="jobType" (change)="updateEmploymentType()">
+                        <option value="">Any</option>
+                        <option value="Permanent">Permanent</option>
+                        <option value="Temporary">Temporary/Contract</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Employment Type</label>
+                    <select formControlName="employmentType">
+                        <option value="">Any</option>
+                        <option value="Full Time">Full Time</option>
+                        <option value="Part Time">Part Time</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="search-btn">
+                <i class="fas fa-search"></i> Search Resumes
+            </button>
+            <button type="button" class="reset-btn" (click)="resetFilters()">
+                <i class="fas fa-undo"></i> Reset Filters
+            </button>
+            <button type="button" class="save-btn" (click)="saveSearch()">
+                <i class="fas fa-save"></i> Save Search
+            </button>
+        </div>
+    </form>
+
+    <!-- Results Section -->
+    <div class="results-section" *ngIf="filteredCandidates.length > 0">
+        <div class="results-header">
+            <h3 class="results-count">{{ filteredCandidates.length }} Matching Resumes Found</h3>
+            <div class="results-actions">
+                <select (change)="sortResults($event)">
+                    <option value="relevance">Sort by Relevance</option>
+                    <option value="experience_high">Experience: High to Low</option>
+                    <option value="experience_low">Experience: Low to High</option>
+                    <option value="recent">Recently Updated</option>
+                </select>
+                <button
+                    class="view-btn list-view"
+                    [ngClass]="{'active': viewMode === 'list'}"
+                    (click)="setViewMode('list')"
+                >
+                    <i class="fas fa-list"></i>
+                </button>
+                <button
+                    class="view-btn grid-view"
+                    [ngClass]="{'active': viewMode === 'grid'}"
+                    (click)="setViewMode('grid')"
+                >
+                    <i class="fas fa-th"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Candidate Grid View -->
+        <div class="candidate-grid" *ngIf="viewMode === 'grid' && filteredCandidates.length > 0">
+            <div class="candidate-card" *ngFor="let candidate of filteredCandidates | slice: (currentPage-1)*10 : currentPage*10">
+                <div class="card-header">
+                    <div class="candidate-info">
+                        <h3 class="name">{{ candidate.name }}</h3>
+                        <div class="quick-info">
+                            <span>{{ candidate.role }}</span>
+                            <span>{{ candidate.location }}</span>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn"><i class="fas fa-star"></i></button>
+                        <button class="action-btn"><i class="fas fa-envelope"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="detail-group">
+                        <label>Experience</label>
+                        <p>{{ candidate.experience }}</p>
+                    </div>
+                    <div class="detail-group">
+                        <label>CTC</label>
+                        <p>{{ candidate.ctc }}</p>
+                    </div>
+                    <div class="detail-group">
+                        <label>Notice Period</label>
+                        <p>{{ candidate.noticePeriod }}</p>
+                    </div>
+                    <div class="detail-group">
+                        <label>Skills</label>
+                        <div class="skills">
+                            <span class="skill-tag" *ngFor="let skill of candidate.skills">{{ skill }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="view-profile-btn">View Profile</button>
+                    <button class="send-mail-btn">Send Mail</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Candidate List View -->
+        <div class="candidate-list" *ngIf="viewMode === 'list' && filteredCandidates.length > 0">
+            <div class="candidate-row" *ngFor="let candidate of filteredCandidates | slice: (currentPage-1)*10 : currentPage*10">
+                <div class="candidate-summary">
+                    <h3 class="name">{{ candidate.name }}</h3>
+                    <p class="designation">{{ candidate.role }}</p>
+                </div>
+                <div class="candidate-meta">
+                    <span><i class="fas fa-briefcase"></i> {{ candidate.experience }}</span>
+                    <span><i class="fas fa-map-marker-alt"></i> {{ candidate.location }}</span>
+                    <span><i class="fas fa-rupee-sign"></i> {{ candidate.ctc }}</span>
+                </div>
+                <div class="candidate-education">
+                    <p>{{ candidate.degree }}</p>
+                    <p>{{ candidate.university }} ({{ candidate.passingYear }})</p>
+                </div>
+                <div class="candidate-actions">
+                    <button class="view-profile-btn">View Profile</button>
+                    <button class="send-mail-btn">Send Mail</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- No Results -->
+    <div class="no-results" *ngIf="searchPerformed && filteredCandidates.length === 0">
+        <i class="fas fa-search no-results-icon"></i>
+        <h3>No Candidates Found</h3>
+        <p>Try adjusting your search criteria to find more candidates.</p>
+        <button class="reset-btn" (click)="resetFilters()">Reset All Filters</button>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" *ngIf="filteredCandidates.length > 0">
+        <button class="page-nav" [disabled]="currentPage === 1" (click)="prevPage()">Previous</button>
+        <button
+            class="page-num"
+            *ngFor="let page of [].constructor(totalPages); let i = index"
+            [class.active]="currentPage === i + 1"
+            (click)="goToPage(i + 1)"
+        >{{ i + 1 }}</button>
+        <button class="page-nav" [disabled]="currentPage === totalPages" (click)="nextPage()">Next</button>
+    </div>
+</div>
+
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-nav">
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Help Center</a>
+        </div>
+        <p class="footer-bottom">© 2025 JobTalk. All rights reserved.</p>
+    </div>
+</footer>

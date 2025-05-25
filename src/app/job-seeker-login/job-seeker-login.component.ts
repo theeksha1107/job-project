@@ -1,51 +1,78 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Router,RouterModule, ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-job-seeker-login',
-  imports: [FormsModule,RouterModule],
+  standalone: true,
+  imports: [FormsModule,CommonModule,RouterModule],
   templateUrl: './job-seeker-login.component.html',
-  styleUrl: './job-seeker-login.component.css' 
+  styleUrl: './job-seeker-login.component.css'
 })
 export class JobSeekerLoginComponent {
+  isMenuOpen = false;
   email: string = '';
   password: string = '';
+  otp: string = '';
+  isOtpSent: boolean = false;
+  loading: boolean = false;
 
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.email = params['email'] || '';
-      this.password = params['password'] || '';
-    });
-  }
-
-  onLogin() {
-    if (!this.email.trim() || !this.password.trim()) {
-      alert('Please enter both email and password');
+  // Function to Send OTP
+  sendOtp() {
+    if (!this.email.trim()) {
+      alert('Please enter your email');
       return;
     }
 
-    const loginData = { email: this.email, password: this.password };
+    this.loading = true;
 
-    this.http.post('http://127.0.0.1:8000/login', loginData).subscribe({
+    this.http.post('http://127.0.0.1:8000/send-otp', { email: this.email }).subscribe({
       next: (response) => {
-        console.log('Login successful:', response);
-        alert('Login successful');
-        this.router.navigate(['/jobseeker-p1']);
+        console.log('OTP sent:', response);
+        alert('OTP sent successfully. Check your email.');
+        this.isOtpSent = true;
+        this.loading = false;
       },
-      error: (error: HttpErrorResponse) => {
-        console.error('Login failed:', error);
-        const errorMessage =
-          error.status === 401
-            ? 'Invalid email or password'
-            : 'An error occurred. Please try again later.';
-        alert(errorMessage);
+      error: (error) => {
+        console.error('OTP sending failed:', error);
+        alert(`Error: ${error.error?.message || 'Failed to send OTP'}`);
+        this.loading = false;
       },
     });
   }
+
+  // Function to Verify OTP and Login
+  verifyOtp() {
+    if (!this.otp.trim() || !this.password.trim()) {
+      alert('Please enter OTP and password');
+      return;
+    }
+
+    this.loading = true;
+
+    this.http.post('http://127.0.0.1:8000/verify-otp', { email: this.email, otp: this.otp, password: this.password }).subscribe({
+      next: (response) => {
+        console.log('OTP verified:', response);
+        alert('Login successful');
+        this.router.navigate(['/jobseeker-p1']);
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('OTP verification failed:', error);
+        alert('Invalid OTP or password. Please try again.');
+        this.loading = false;
+      },
+    });
+  }
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+  
+  closeMenu() {
+    this.isMenuOpen = false;
+  }
 }
-
-

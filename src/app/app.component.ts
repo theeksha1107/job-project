@@ -1,42 +1,50 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import { CommonModule } from '@angular/common';
+import { LoggerService } from './services/logger.service'; // Import LoggerService
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, FormsModule, RouterOutlet, CommonModule], // Add CommonModule here
+  imports: [RouterModule, FormsModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'job-portal';
-  searchQuery: string = '';
-  skillset: string = '';
-  city: string = '';
-  experience: string = '';
-  experienceLevels: string[] = ['0-1 years', '1-3 years', '3-5 years', '5+ years'];
-  isExpanded: boolean = false;
+  title = 'Job Portal';
 
-  constructor(private router: Router) {}
+  searchQuery = '';
+  skillset = '';
+  city = '';
+  experience = '';
 
-  toggleFilters() {
+  experienceLevels = ['0-1 years', '1-3 years', '3-5 years', '5+ years'];
+  isExpanded = false;
+
+  constructor(
+    private router: Router,
+    private logger: LoggerService  // Inject LoggerService
+  ) {}
+
+  toggleFilters(): void {
     this.isExpanded = !this.isExpanded;
+    this.logger.log(`Filters section toggled: ${this.isExpanded ? 'Expanded' : 'Collapsed'}`);
   }
 
-  onSearch() {
+  onSearch(): void {
     if (this.searchQuery.trim()) {
       const queryParams = {
         q: this.searchQuery,
-        skillset: this.skillset,
-        city: this.city,
-        experience: this.experience
+        skillset: this.skillset || undefined,
+        city: this.city || undefined,
+        experience: this.experience || undefined
       };
 
+      this.logger.log(`Search performed with query: ${JSON.stringify(queryParams)}`);
       this.router.navigate(['/search'], { queryParams });
     } else {
+      this.logger.log('Search attempted with empty query', 'ERROR');
       alert('Please enter a search query!');
     }
   }

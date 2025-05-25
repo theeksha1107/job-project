@@ -1,0 +1,85 @@
+<!-- Header Section -->
+<header class="container-fluid py-3 shadow-lg animated-header text-center">
+  <div class="container text-center">
+    <!-- Project Name -->
+    <h1 class="fs-3 fw-bold text-brand">JobTalk</h1>
+    
+    <!-- Navigation Menu -->
+    <nav class="navbar navbar-expand-lg navbar-light justify-content-center">
+      <div class="container-fluid">
+        <!-- Mobile Toggle Button -->
+        <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse justify-content-center" [ngClass]="{'show': isNavbarOpen}" id="navbarNav">
+          <ul class="navbar-nav text-center">
+            <!-- Home -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/home">Home</a>
+            </li>
+            
+            <!-- User Access Dropdown -->
+            <li class="nav-item dropdown"
+                (mouseenter)="openDropdown('userDropdown')"
+                (mouseleave)="closeDropdown('userDropdown')">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown">
+               Jobs & responses
+              </a>
+              <ul class="dropdown-menu" [ngClass]="{'show': openDropdownId === 'userDropdown'}">
+                <li><a class="dropdown-item" routerLink="/post_hot_job">Post a hot vacancy</a></li>
+                <li><a class="dropdown-item" routerLink="/employer-login">Post an internship</a></li>
+                <li><a class="dropdown-item" routerLink="/job-seeker-login">Post a classified</a></li>
+                <li><a class="dropdown-item" routerLink="/job-seeker-login">Manage jobs & responses</a></li>
+              </ul>
+            </li>
+
+            <!-- Job Search Dropdown -->
+            <li class="nav-item dropdown"
+                (mouseenter)="openDropdown('jobDropdown')"
+                (mouseleave)="closeDropdown('jobDropdown')">
+              <a class="nav-link dropdown-toggle" href="#" id="jobDropdown">
+                Resdex
+              </a>
+              <ul class="dropdown-menu" [ngClass]="{'show': openDropdownId === 'jobDropdown'}">
+                <li><a class="dropdown-item" routerLink="/search_resume">Search Resumes</a></li>
+                <li><a class="dropdown-item" routerLink="/search_resume">Sent NVite</a></li>
+                <li><a class="dropdown-item" routerLink="/search_resume">Manage Searches</a></li>
+                <li><a class="dropdown-item" routerLink="/search_resume">Folders</a></li>
+                <li><a class="dropdown-item" routerLink="/search_resume">Resdex Requriements</a></li>
+                <li><a class="dropdown-item" routerLink="/search_resume">Mail Center</a></li>
+                <li><a class="dropdown-item" routerLink="/search_resume">E-mail Templates</a></li>
+
+              </ul>
+            </li>
+            <li class="nav-item dropdown"
+                (mouseenter)="openDropdown('jobDropdown')"
+                (mouseleave)="closeDropdown('jobDropdown')">
+              <a class="nav-link dropdown-toggle" href="#" id="jobDropdown">
+                Analytics
+              </a>
+              <ul class="dropdown-menu" [ngClass]="{'show': openDropdownId === 'jobDropdown'}">
+                <li><a class="dropdown-item" routerLink="/job-category-search">Job Category Search</a></li>
+                <li><a class="dropdown-item" href="#">Advanced Search</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Footer Section -->
+<footer class="container-fluid bg-dark text-white text-center py-3">
+  <div class="footer-content">
+      <div class="footer-nav">
+          <a href="#">About Us</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Help Center</a>
+      </div>
+      <p class="mt-2 mb-0">© 2025 JobTalk. All rights reserved.</p>
+  </div>
+</footer>

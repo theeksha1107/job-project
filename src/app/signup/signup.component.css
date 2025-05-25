@@ -1,171 +1,260 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+/* Inter font */
+@font-face {
+  font-family: Inter;
+  src: url(/assets/fonts/Inter-Regular.woff2) format("woff2"),
+       url(/assets/fonts/Inter-Regular.woff) format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter;
+  src: url(/assets/fonts/Inter-Medium.woff2) format("woff2"),
+       url(/assets/fonts/Inter-Medium.woff) format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter;
+  src: url(/assets/fonts/Inter-SemiBold.woff2) format("woff2"),
+       url(/assets/fonts/Inter-SemiBold.woff) format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter;
+  src: url(/assets/fonts/Inter-Bold.woff2) format("woff2"),
+       url(/assets/fonts/Inter-Bold.woff) format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter;
+  src: url(/assets/fonts/Inter-ExtraBold.woff2) format("woff2"),
+       url(/assets/fonts/Inter-ExtraBold.woff) format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
 
-/* General Reset */
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Noto Sans', sans-serif;
-    background: #201b2c;
-    color: #f7f7f7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f5f7fa;
+  color: #1a202c;
+  line-height: 1.5;
 }
 
-/* Container for both login and signup */
+/* Variables */
+:root {
+  --primary: #2b6cb0;
+  --accent: #ffd700;
+  --text: #1a202c;
+  --bg: #fff;
+  --border: #e2e8f0;
+  --active: #3182ce;
+  --inactive: #edf2f7;
+  --subtitle: #718096;
+  --header-bg: #2c3e50;
+  --footer-bg: #2c3e50;
+}
+
+/* Container */
 .container {
-    width: 100%;
-    max-width: 900px; /* Ensuring max-width for large screens */
-    height: 100%;
-    max-height: 650px; /* Limiting height for large screens */
-    background-color: #FFFFFF;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 2px 2px 30px rgba(217, 255, 2, 0.2);
-    border-radius: 20px;
-    background-image: url('https://i.postimg.cc/pdL2vfK9/bg.gif');
-    background-repeat: no-repeat;
-    background-size: cover;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
-/* Common layout for login and signup */
-.sign-up, .login-container {
-    width: 100%;
-    max-width: 450px; /* Restricting max width for both forms */
-    padding: 20px;
-    background: rgb(255, 230, 0);
-    border-radius: 20px;
-    box-shadow: 0px 10px 40px #00000056;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
+/* Header */
+header {
+  background: var(--header-bg);
+  padding: 1rem 0;
+  border-bottom: 4px solid var(--primary);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.text-brand {
+  color: var(--accent);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.hamburger:hover {
+  color: var(--accent);
+}
+.nav {
+  display: flex;
+  justify-content: flex-end;
+}
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+.nav-link:hover {
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.1);
 }
 
-/* Heading for both sections */
+/* Sign-up Section */
+.sign-up {
+  max-width: 500px;
+  margin: 2rem auto;
+  background: var(--bg);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 .heading {
-    font-family: calibri;
-    color: rgba(30, 30, 30, 1);
-    font-size: 2rem;
-    margin-bottom: 20px;
-    text-align: center;
+  text-align: center;
+  color: var(--text);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
 }
-
-/* Input text styles */
 .text {
-    width: 100%;
-    height: 50px;
-    box-shadow: 2px 6px 18px rgba(66, 57, 238, .3);
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px 0;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
 }
-
-.text input {
-    height: 40px;
-    width: 80%;
-    outline: none;
-    border: none;
-    font-size: 14px;
-    margin: 5px;
-}
-
 .text img {
-    margin-left: 20px;
+  margin-right: 0.75rem;
 }
-
-/* Button Styling */
-button {
-    width: 200px;
-    height: 40px;
-    outline: none;
-    border: none;
-    border-radius: 20px;
-    background: linear-gradient(-30deg, #3B02ED, #8E2AE0 55%);
-    box-shadow: 2px 6px 16px rgba(66, 57, 238, .3);
-    color: #FFFFFF;
-    font-weight: 600;
-    letter-spacing: 1px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all .3s ease;
-    margin-top: 20px;
+.text input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 1rem;
 }
-
-button:active {
-    transform: scale(1.1);
-}
-
-/* Checkbox and conditions */
-.conditions {
-    font-family: myriad pro;
-    color: #000000;
-    font-size: 14px;
-    margin-top: 10px;
-}
-
-.conditions a {
-    color: #7D22E3;
-    font-weight: 500;
-}
-
 .terms {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.terms input {
+  margin-right: 0.5rem;
+}
+.terms label {
+  font-size: 0.9rem;
+  color: var(--subtitle);
+}
+.terms a {
+  color: var(--primary);
+  text-decoration: none;
+}
+.terms a:hover {
+  text-decoration: underline;
+}
+.signup-btn {
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.signup-btn:hover {
+  background: var(--active);
+}
+.conditions {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  color: var(--subtitle);
+}
+.conditions a {
+  color: var(--primary);
+  text-decoration: none;
+}
+.conditions a:hover {
+  text-decoration: underline;
 }
 
-/* Responsive Adjustments */
-@media only screen and (max-width: 1080px) {
-    .container {
-        width: 90%; /* Slightly reduce container width on smaller screens */
-        height: auto; /* Let the container height adjust based on content */
-    }
-    .sign-up, .login-container {
-        padding: 15px;
-    }
+/* Footer */
+footer {
+  background: var(--footer-bg);
+  color: #fff;
+  padding: 1.5rem;
+  text-align: center;
+  border-top: 4px solid var(--primary);
+}
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
 }
 
-@media only screen and (max-width: 600px) {
-    .container {
-        width: 85%; /* Further reduce container width for mobile */
-    }
-
-    .text {
-        width: 90%; /* Make inputs more responsive */
-    }
-
-    .heading {
-        font-size: 1.8rem; /* Slightly smaller text for smaller screens */
-    }
+/* Responsive */
+@media (max-width: 767px) {
+  .hamburger {
+    display: block;
+  }
+  .nav {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--header-bg);
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .nav-open {
+    display: block;
+  }
+  .nav-list {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .sign-up {
+    margin: 1.5rem;
+    padding: 1.5rem;
+  }
+  .heading {
+    font-size: 1.5rem;
+  }
 }
-
-@media only screen and (max-width: 500px) {
-    .text {
-        width: 90%; /* More space for the input fields */
-    }
-}
-
-@media only screen and (max-width: 420px) {
-    .container {
-        width: 95%;
-    }
-
-    .heading {
-        text-align: center;
-        font-size: 1.6rem; /* Adjust heading for small screens */
-    }
-
-    .conditions {
-        text-align: center;
-    }
-
-    .text {
-        width: 100%; /* Allow input fields to take full width */
-    }
+@media (max-width: 575px) {
+  .container {
+    padding: 0 1rem;
+  }
+  .text-brand {
+    font-size: 1.5rem;
+  }
 }

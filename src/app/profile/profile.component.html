@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobTalk</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <!-- Header Section -->
+  <header class="container-fluid py-3 shadow-lg text-center">
+    <div class="container d-flex align-items-center justify-content-between">
+      <h1 class="fs-3 fw-bold text-brand">JobTalk</h1>
+      <button class="hamburger" (click)="toggleMenu()" aria-label="Toggle navigation">
+        <i class="fas fa-bars" *ngIf="!isMenuOpen"></i>
+        <i class="fas fa-times" *ngIf="isMenuOpen"></i>
+      </button>
+      <nav class="nav" [ngClass]="{'nav-open': isMenuOpen}">
+        <ul class="nav-list">
+          <li class="nav-item"><a class="nav-link" routerLink="/home" (click)="closeMenu()">Home</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/signup" (click)="closeMenu()">Sign-up</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/employer-login" (click)="closeMenu()">Employer Login</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/job-seeker-login" (click)="closeMenu()">Jobseeker Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+ 
+ 
+  <!-- Profile -->
+  <main class="profile-container animate__animated animate__fadeIn">
+    <aside class="profile-sidebar">
+      <div class="profile-avatar" (click)="replaceAvatar()">
+        <img [src]="profile.avatar" alt="Profile Avatar" loading="lazy" class="avatar-img" />
+        <input type="file" id="avatarInput" (change)="onAvatarChange($event)" accept="image/*" hidden />
+      </div>
+      <h3 class="profile-name">{{ profile.firstName }} {{ profile.lastName }}</h3>
+      <p class="profile-email"><i class="fas fa-envelope"></i> {{ profile.email }}</p>
+      <p class="profile-mobile"><i class="fas fa-phone"></i> {{ profile.mobileNumber }}</p>
+      <button class="edit-profile-btn" (click)="openProfileEdit()">
+        <i class="fas fa-edit"></i> {{ isEditing ? 'View Profile' : 'Edit Profile' }}
+      </button>
+      <button class="logout-btn" (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </aside>
+    <section class="profile-content">
+      <h2 class="section-title"><i class="fas fa-user-circle"></i> Employee Profile</h2>
+      <form *ngIf="isEditing" (ngSubmit)="saveProfile()" class="profile-form" [formGroup]="profileForm">
+        <div class="form-container">
+          <div class="form-column animate__animated animate__fadeInLeft">
+            <h3><i class="fas fa-user"></i> Basic Details</h3>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>First Name</mat-label>
+              <input matInput formControlName="firstName" required />
+              <mat-error *ngIf="profileForm.get('firstName')?.hasError('required')">First Name is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>Last Name</mat-label>
+              <input matInput formControlName="lastName" required />
+              <mat-error *ngIf="profileForm.get('lastName')?.hasError('required')">Last Name is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email" required />
+              <mat-error *ngIf="profileForm.get('email')?.hasError('required')">Email is required</mat-error>
+              <mat-error *ngIf="profileForm.get('email')?.hasError('email')">Invalid email format</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>Mobile Number</mat-label>
+              <input matInput formControlName="mobileNumber" required />
+              <mat-error *ngIf="profileForm.get('mobileNumber')?.hasError('required')">Mobile Number is required</mat-error>
+              <mat-error *ngIf="profileForm.get('mobileNumber')?.hasError('pattern')">Invalid mobile number</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>Gender</mat-label>
+              <mat-select formControlName="gender" required>
+                <mat-option *ngFor="let g of genders" [value]="g">{{ g }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="profileForm.get('gender')?.hasError('required')">Gender is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>Current Location</mat-label>
+              <input matInput formControlName="currentLocation" list="citiesList" required />
+              <datalist id="citiesList">
+                <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+              </datalist>
+              <mat-error *ngIf="profileForm.get('currentLocation')?.hasError('required')">Current Location is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>Address</mat-label>
+              <input matInput formControlName="address" />
+            </mat-form-field>
+          </div>
+          <div class="form-column animate__animated animate__fadeInRight">
+            <h3><i class="fas fa-briefcase"></i> Professional Details</h3>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>Highest Qualification</mat-label>
+              <input matInput formControlName="highestQualification" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>University/College</mat-label>
+              <input matInput formControlName="university" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>Primary Skills</mat-label>
+              <mat-chip-grid #chipList>
+                <mat-chip-row *ngFor="let skill of profile.primarySkills" (removed)="removeSkill(skill)">
+                  {{ skill }}
+                  <button matChipRemove><mat-icon>cancel</mat-icon></button>
+                </mat-chip-row>
+                <input
+                  placeholder="Add skill..."
+                  [matChipInputFor]="chipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                  (matChipInputTokenEnd)="addSkill($event)"
+                />
+              </mat-chip-grid>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>Project Details</mat-label>
+              <textarea matInput formControlName="projectDetails" rows="4"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>Notice Period</mat-label>
+              <mat-select formControlName="noticePeriod">
+                <mat-option *ngFor="let period of noticePeriods" [value]="period">{{ period }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>Preferred Salary</mat-label>
+              <input matInput formControlName="preferredSalary" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>Current CTC</mat-label>
+              <input matInput formControlName="currentCTC" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>Preferred Location</mat-label>
+              <input matInput formControlName="preferredLocation" list="citiesList" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>Visa Status</mat-label>
+              <mat-select formControlName="visa">
+                <mat-option value="">Select</mat-option>
+                <mat-option value="Citizen">Citizen</mat-option>
+                <mat-option value="Work Permit">Work Permit</mat-option>
+                <mat-option value="Student Visa">Student Visa</mat-option>
+                <mat-option value="Other">Other</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-group">
+              <mat-label>Physically Challenged</mat-label>
+              <mat-select formControlName="physicallyChallenged">
+                <mat-option value="">Select</mat-option>
+                <mat-option value="Yes">Yes</mat-option>
+                <mat-option value="No">No</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="form-group">
+              <label>Upload Resume</label>
+              <input type="file" (change)="uploadResume($event)" accept=".pdf" />
+              <p *ngIf="profile.resumeFileName" class="resume-uploaded">
+                <i class="fas fa-file-pdf"></i> {{ profile.resumeFileName }}
+              </p>
+            </div>
+            <button mat-raised-button color="primary" type="submit" class="save-button" [disabled]="profileForm.invalid">
+              <i class="fas fa-save"></i> Save Profile
+            </button>
+          </div>
+        </div>
+      </form>
+      <div *ngIf="!isEditing" class="profile-view">
+        <div class="profile-details-grid">
+          <mat-card class="details-card animate__animated animate__zoomIn">
+            <mat-card-header>
+              <mat-card-title><i class="fas fa-user"></i> Basic Details</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <ul class="details-list">
+                <li><span class="detail-label">First Name:</span><span class="detail-value">{{ profile.firstName || 'N/A' }}</span></li>
+                <li><span class="detail-label">Last Name:</span><span class="detail-value">{{ profile.lastName || 'N/A' }}</span></li>
+                <li><span class="detail-label">Email:</span><span class="detail-value">{{ profile.email || 'N/A' }}</span></li>
+                <li><span class="detail-label">Mobile Number:</span><span class="detail-value">{{ profile.mobileNumber || 'N/A' }}</span></li>
+                <li><span class="detail-label">Gender:</span><span class="detail-value">{{ profile.gender || 'N/A' }}</span></li>
+                <li><span class="detail-label">Current Location:</span><span class="detail-value">{{ profile.currentLocation || 'N/A' }}</span></li>
+                <li><span class="detail-label">Address:</span><span class="detail-value">{{ profile.address || 'N/A' }}</span></li>
+              </ul>
+            </mat-card-content>
+          </mat-card>
+          <mat-card class="details-card animate__animated animate__zoomIn">
+            <mat-card-header>
+              <mat-card-title><i class="fas fa-briefcase"></i> Professional Details</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <ul class="details-list">
+                <li><span class="detail-label">Highest Qualification:</span><span class="detail-value">{{ profile.highestQualification || 'N/A' }}</span></li>
+                <li><span class="detail-label">University/College:</span><span class="detail-value">{{ profile.university || 'N/A' }}</span></li>
+                <li>
+                  <span class="detail-label">Primary Skills:</span>
+                  <span class="detail-value">
+                    <mat-chip-grid>
+                      <mat-chip-row *ngFor="let skill of profile.primarySkills">{{ skill }}</mat-chip-row>
+                      <span *ngIf="!profile.primarySkills.length">N/A</span>
+                    </mat-chip-grid>
+                  </span>
+                </li>
+                <li><span class="detail-label">Project Details:</span><span class="detail-value">{{ profile.projectDetails || 'N/A' }}</span></li>
+                <li><span class="detail-label">Notice Period:</span><span class="detail-value">{{ profile.noticePeriod || 'N/A' }}</span></li>
+                <li><span class="detail-label">Preferred Salary:</span><span class="detail-value">{{ profile.preferredSalary || 'N/A' }}</span></li>
+                <li><span class="detail-label">Current CTC:</span><span class="detail-value">{{ profile.currentCTC || 'N/A' }}</span></li>
+                <li><span class="detail-label">Preferred Location:</span><span class="detail-value">{{ profile.preferredLocation || 'N/A' }}</span></li>
+                <li><span class="detail-label">Visa Status:</span><span class="detail-value">{{ profile.visa || 'N/A' }}</span></li>
+                <li><span class="detail-label">Physically Challenged:</span><span class="detail-value">{{ profile.physicallyChallenged || 'N/A' }}</span></li>
+                <li>
+                  <span class="detail-label">Resume:</span>
+                  <span class="detail-value">
+                    <a *ngIf="profile.resumeFileName" href="#" (click)="downloadResume()" class="resume-link">
+                      <i class="fas fa-download"></i> {{ profile.resumeFileName }}
+                    </a>
+                    <span *ngIf="!profile.resumeFileName">Not uploaded</span>
+                  </span>
+                </li>
+              </ul>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </section>
+  </main>
+ 
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 JobTalk. All rights reserved.</p>
+  </footer>

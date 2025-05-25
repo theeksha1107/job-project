@@ -1,0 +1,97 @@
+.modal-container {
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 1rem auto;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d3748;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  
+  .close-button svg {
+    width: 24px;
+    height: 24px;
+    stroke: #718096;
+  }
+  
+  .modal-body {
+    margin-bottom: 1.5rem;
+  }
+  
+  .modal-body p {
+    font-size: 0.9rem;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+  }
+  
+  .modal-body strong {
+    color: #2d3748;
+  }
+  
+  .requirements ul {
+    list-style: disc;
+    margin-left: 1.5rem;
+    font-size: 0.9rem;
+    color: #2d3748;
+  }
+  
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .modal-button {
+    background: #2b6cb0;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .modal-button:hover {
+    background: #3182ce;
+  }
+  
+  @media (max-width: 600px) {
+    .modal-container {
+      padding: 1rem;
+      margin: 0.5rem;
+    }
+  
+    .modal-header h2 {
+      font-size: 1.25rem;
+    }
+  
+    .modal-body p,
+    .requirements ul {
+      font-size: 0.85rem;
+    }
+  
+    .modal-button {
+      font-size: 0.85rem;
+      padding: 0.5rem;
+    }
+  }

@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true, // ✅ Standalone component (no NgModule needed)
-  imports: [CommonModule, ReactiveFormsModule], // ✅ Import necessary modules here
+  imports: [CommonModule, ReactiveFormsModule,RouterModule], // ✅ Import necessary modules here
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.css']
 })

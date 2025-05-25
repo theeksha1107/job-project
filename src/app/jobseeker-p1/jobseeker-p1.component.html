@@ -1,72 +1,218 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <!-- Search Bar with Filters -->
+<!-- jobseeker-p1.component.html -->
+<div class="wrapper">
+  <!-- Header Section -->
+  <header class="header">
+    <div class="container">
+      <h1 class="header-title">JobTalk</h1>
+      <nav class="nav-menu">
+        <ul class="nav-list">
+          <li class="nav-item"><a class="nav-link" routerLink="/home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/signup">Sign-up</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/employer-login">Employer Login</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/job-seeker-login">Jobseeker Login</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/job-category-search">Job Category Search</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Profile Section -->
+  <div class="profile-section">
+    <div class="profile-button" (click)="openProfile()">
+      <div class="avatar-container">
+        <div class="avatar-circle">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <span class="status-indicator" [ngClass]="isOnline ? 'online' : 'offline'"></span>
+      </div>
+      <span class="profile-label">My Profile</span>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Search and Filter Section -->
+    <section class="search-filter">
       <div class="search-bar">
+        <i class="fas fa-search"></i>
         <input type="text" [(ngModel)]="searchText" class="form-control" placeholder="Search Jobs..." />
-        <div class="filter-dropdowns">
-          <!-- Skillset Filter -->
-          <select [(ngModel)]="skillset" class="form-control">
-            <option value="">Skillset</option>
-            <option *ngFor="let skill of skillsets" [value]="skill">{{ skill }}</option>
-          </select>
-          <!-- City Filter -->
-          <select [(ngModel)]="city" class="form-control">
-            <option value="">City</option>
-            <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
-          </select>
-          <!-- Experience Filter -->
-          <select [(ngModel)]="experience" class="form-control">
-            <option value="">Experience</option>
-            <option *ngFor="let exp of experiences" [value]="exp">{{ exp }}</option>
-          </select>
-          <!-- Work Mode Filter -->
-          <select [(ngModel)]="workMode" class="form-control">
-            <option value="">Work Mode</option>
-            <option *ngFor="let mode of workModes" [value]="mode">{{ mode }}</option>
-          </select>
+        <i *ngIf="searchText" class="fas fa-times clear-icon" (click)="searchText = ''"></i>
+      </div>
+      <div class="filter-section">
+        <h4 class="filter-heading">Filter Jobs</h4>
+        <div class="filter-grid">
+          <div class="filter-group">
+            <label>Skillset</label>
+            <select [(ngModel)]="skillset" class="form-control">
+              <option value="">All Skills</option>
+              <option *ngFor="let skill of skillsets" [value]="skill">{{ skill }}</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Location</label>
+            <select [(ngModel)]="city" class="form-control">
+              <option value="">All Cities</option>
+              <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Experience</label>
+            <select [(ngModel)]="experience" class="form-control">
+              <option value="">Any Experience</option>
+              <option *ngFor="let exp of experiences" [value]="exp">{{ exp }}</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Work Mode</label>
+            <select [(ngModel)]="workMode" class="form-control">
+              <option value="">Any Work Mode</option>
+              <option *ngFor="let mode of workModes" [value]="mode">{{ mode }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Job Listings Section -->
+    <section class="job-listings">
+      <h3 class="section-title">Available Positions</h3>
+      <div class="job-grid">
+        <div *ngIf="filteredJobs.length > 0" class="job-grid-inner">
+          <div *ngFor="let job of filteredJobs" class="job-card" (click)="openJobDetails(job)">
+            <div class="job-card-header">
+              <div class="company-logo">
+                <img src="https://cdn.pixabay.com/photo/2017/01/31/13/14/animal-2023924_960_720.png" alt="Company Logo">
+              </div>
+              <div class="job-title-company">
+                <h4 class="job-title">{{ job.title }}</h4>
+                <h5 class="company-name"><i class="fas fa-building"></i> {{ job.company }}</h5>
+              </div>
+            </div>
+            <div class="job-card-body">
+              <div class="job-highlights">
+                <div class="highlight-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <p>{{ job.location }}</p>
+                </div>
+                <div class="highlight-item">
+                  <i class="fas fa-briefcase"></i>
+                  <p>{{ job.experience }}</p>
+                </div>
+                <div class="highlight-item">
+                  <i class="fas fa-laptop-house"></i>
+                  <p>{{ job.workMode }}</p>
+                </div>
+              </div>
+              <div class="skills-container">
+                <span *ngFor="let skill of job.skillset" class="skill-tag">{{ skill }}</span>
+              </div>
+              <button class="view-details-btn">View Details</button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="filteredJobs.length === 0" class="no-results">
+          <i class="fas fa-search-minus"></i>
+          <p>No Jobs Found Matching Your Criteria</p>
+          <button class="reset-btn" (click)="resetFilters()">Reset Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Job Details Modal -->
+    <div *ngIf="selectedJob" class="modal-overlay">
+      <div class="job-details-modal">
+        <div class="modal-header">
+          <h3>{{ selectedJob.title }}</h3>
+          <span class="close-modal" (click)="closeJobDetails()"><i class="fas fa-times"></i></span>
+        </div>
+        <div class="modal-body">
+          <div class="company-section">
+            <div class="company-avatar">
+              <img src="https://cdn.pixabay.com/photo/2017/01/31/13/14/animal-2023924_960_720.png" alt="Company Logo">
+            </div>
+            <div class="company-info">
+              <h4>{{ selectedJob.company }}</h4>
+              <a href="{{ selectedJob.website }}" target="_blank" class="company-website">
+                <i class="fas fa-globe"></i> Visit Website
+              </a>
+            </div>
+          </div>
+          <div class="job-details-section">
+            <div class="detail-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h5>Location</h5>
+                <p>{{ selectedJob.location }}</p>
+              </div>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-briefcase"></i>
+              <div>
+                <h5>Experience</h5>
+                <p>{{ selectedJob.experience }}</p>
+              </div>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-laptop-house"></i>
+              <div>
+                <h5>Work Mode</h5>
+                <p>{{ selectedJob.workMode }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="description-section">
+            <h4>Job Description</h4>
+            <p>{{ selectedJob.description }}</p>
+          </div>
+          <div class="responsibilities-section">
+            <h4>Key Responsibilities</h4>
+            <ul>
+              <li *ngFor="let responsibility of selectedJob.responsibilities">{{ responsibility }}</li>
+            </ul>
+          </div>
+          <div class="skills-section">
+            <h4>Required Skills</h4>
+            <div class="skills-container">
+              <span *ngFor="let skill of selectedJob.skillset" class="skill-tag">{{ skill }}</span>
+            </div>
+          </div>
+          <div class="contact-section">
+            <h4>Contact Information</h4>
+            <p><i class="fas fa-envelope"></i> {{ selectedJob.contact }}</p>
+          </div>
+        </div>
+        <div class="application-section">
+          <h4>Apply for this Position</h4>
+          <div class="application-form">
+            <div class="form-group">
+              <i class="fas fa-user"></i>
+              <input type="text" [(ngModel)]="applicantName" placeholder="Your Full Name" class="form-control" />
+            </div>
+            <div class="form-group">
+              <i class="fas fa-envelope"></i>
+              <input type="email" [(ngModel)]="applicantEmail" placeholder="Your Email Address" class="form-control" />
+            </div>
+            <div class="form-group">
+              <i class="fas fa-phone"></i>
+              <input type="tel" [(ngModel)]="applicantPhone" placeholder="Your Phone Number" class="form-control" />
+            </div>
+            <div class="resume-upload">
+              <i class="fas fa-file-pdf"></i>
+              <label for="resume-file">Upload Your Resume (PDF)</label>
+              <input id="resume-file" type="file" (change)="onFileSelected($event)" accept=".pdf" class="file-input" />
+              <span *ngIf="selectedFile" class="file-name">{{ selectedFile.name }}</span>
+            </div>
+            <button class="apply-button" (click)="applyForJob()">
+              <i class="fas fa-paper-plane"></i> Submit Application
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </main>
 
-  <!-- Job Listings -->
-  <div class="row">
-    <div class="col-12" *ngIf="filteredJobs.length > 0">
-      <div *ngFor="let job of filteredJobs" class="job-listing" (click)="openJobDetails(job)">
-        <div class="job-info">
-          <h4>{{ job.title }} <span class="company-name">- {{ job.company }}</span></h4>
-          <p><strong>Location:</strong> {{ job.location }} | <strong>Experience:</strong> {{ job.experience }} | <strong>Work Mode:</strong> {{ job.workMode }}</p>
-          <p><strong>Skills:</strong> {{ job.skillset }}</p>
-        </div>
-      </div>
-    </div>
-    <div *ngIf="filteredJobs.length === 0" class="no-results">
-      <p>No Jobs Found</p>
-    </div>
-  </div>
-
-  <!-- Job Details Modal with Resume Upload -->
-  <div *ngIf="selectedJob" class="job-details-modal">
-    <div class="job-details">
-      <span class="close-modal" (click)="closeJobDetails()">&times;</span>
-      <h3>{{ selectedJob.title }} at {{ selectedJob.company }}</h3>
-      <p><strong>Location:</strong> {{ selectedJob.location }}</p>
-      <p><strong>Experience:</strong> {{ selectedJob.experience }}</p>
-      <p><strong>Work Mode:</strong> {{ selectedJob.workMode }}</p>
-      <p><strong>Skills Required:</strong> {{ selectedJob.skillset }}</p>
-      <p><strong>Description:</strong> {{ selectedJob.description }}</p>
-      <p><strong>Responsibilities:</strong> {{ selectedJob.responsibilities }}</p>
-      <p><strong>Contact:</strong> {{ selectedJob.contact }}</p>
-      <p><strong>Website:</strong> {{ selectedJob.website }}</p>
-
-      <!-- Resume Upload Form -->
-      <div>
-        <input type="text" [(ngModel)]="applicantName" placeholder="Your Name" class="form-control" />
-        <input type="email" [(ngModel)]="applicantEmail" placeholder="Your Email" class="form-control" />
-        <input type="file" (change)="onFileSelected($event)" accept=".pdf" class="form-control" />
-        <button class="apply-button" (click)="applyForJob()">Apply Now</button>
-      </div>
-    </div>
-  </div>
+  <!-- Footer Section -->
+  <footer class="footer">
+    <p>© 2025 JobTalk. All rights reserved.</p>
+  </footer>
 </div>

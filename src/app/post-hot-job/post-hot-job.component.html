@@ -1,0 +1,321 @@
+<!-- Job Portal HTML Template -->
+<div class="job-portal-container">
+  <!-- Header Section -->
+  <header class="container-fluid py-3 shadow-lg animated-header text-center">
+    <div class="container text-center">
+      <!-- Project Name -->
+      <h1 class="fs-3 fw-bold text-brand">JobTalk</h1>
+      
+      <!-- Navigation Menu -->
+      <nav class="navbar navbar-expand-lg navbar-light justify-content-center">
+        <div class="container-fluid">
+          <!-- Mobile Toggle Button -->
+          <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse justify-content-center" [ngClass]="{'show': isNavbarOpen}" id="navbarNav">
+            <ul class="navbar-nav text-center">
+              <!-- Home -->
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/home">Home</a>
+              </li>
+              
+              <!-- User Access Dropdown -->
+              <li class="nav-item dropdown"
+                  (mouseenter)="openDropdown('userDropdown')"
+                  (mouseleave)="closeDropdown('userDropdown')">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown">
+                  Jobs & responses
+                </a>
+                <ul class="dropdown-menu" [ngClass]="{'show': openDropdownId === 'userDropdown'}">
+                  <li><a class="dropdown-item" routerLink="/post_hot_job">Post a hot vacancy</a></li>
+                  <li><a class="dropdown-item" routerLink="/employer-login">Post an internship</a></li>
+                  <li><a class="dropdown-item" routerLink="/job-seeker-login">Post a classified</a></li>
+                  <li><a class="dropdown-item" routerLink="/job-seeker-login">Manage jobs & responses</a></li>
+                </ul>
+              </li>
+              
+              <!-- Job Search Dropdown -->
+              <li class="nav-item dropdown"
+                  (mouseenter)="openDropdown('resdexDropdown')"
+                  (mouseleave)="closeDropdown('resdexDropdown')">
+                <a class="nav-link dropdown-toggle" href="#" id="resdexDropdown">
+                  Resdex
+                </a>
+                <ul class="dropdown-menu" [ngClass]="{'show': openDropdownId === 'resdexDropdown'}">
+                  <li><a class="dropdown-item" routerLink="/search_resume">Search Resumes</a></li>
+                  <li><a class="dropdown-item" routerLink="/search_resume">Sent NVite</a></li>
+                  <li><a class="dropdown-item" routerLink="/search_resume">Manage Searches</a></li>
+                  <li><a class="dropdown-item" routerLink="/search_resume">Folders</a></li>
+                  <li><a class="dropdown-item" routerLink="/search_resume">Resdex Requriements</a></li>
+                  <li><a class="dropdown-item" routerLink="/search_resume">Mail Center</a></li>
+                  <li><a class="dropdown-item" routerLink="/search_resume">E-mail Templates</a></li>
+                </ul>
+              </li>
+              
+              <!-- Analytics Dropdown -->
+              <li class="nav-item dropdown"
+                  (mouseenter)="openDropdown('analyticsDropdown')"
+                  (mouseleave)="closeDropdown('analyticsDropdown')">
+                <a class="nav-link dropdown-toggle" href="#" id="analyticsDropdown">
+                  Analytics
+                </a>
+                <ul class="dropdown-menu" [ngClass]="{'show': openDropdownId === 'analyticsDropdown'}">
+                  <li><a class="dropdown-item" routerLink="/job-category-search">Job Category Search</a></li>
+                  <li><a class="dropdown-item" href="#">Advanced Search</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="action-buttons">
+        <button class="btn-primary post-job" (click)="toggleJobPostForm()">
+          {{ isPostingJob ? 'Cancel' : 'Post a Hot Job' }}
+        </button>
+      </div>
+    </div>
+  </header>
+  
+ 
+    
+    <!-- Job Posting Form -->
+    <div class="job-post-section" *ngIf="isPostingJob">
+      <div class="card">
+        <div class="card-header">
+          <h2>Post a New Job</h2>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="jobPostForm" (ngSubmit)="submitJob()">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="title">Job Title*</label>
+                <input type="text" id="title" formControlName="title" placeholder="e.g., Senior Frontend Developer">
+                <div class="error-message" *ngIf="jobPostForm.get('title')?.invalid && jobPostForm.get('title')?.touched">
+                  Job title is required
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="company">Company Name*</label>
+                <input type="text" id="company" formControlName="company" placeholder="e.g., TechSolutions Inc.">
+                <div class="error-message" *ngIf="jobPostForm.get('company')?.invalid && jobPostForm.get('company')?.touched">
+                  Company name is required
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="location">Location*</label>
+                <select id="location" formControlName="location">
+                  <option value="">Select Location</option>
+                  <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+                </select>
+                <div class="error-message" *ngIf="jobPostForm.get('location')?.invalid && jobPostForm.get('location')?.touched">
+                  Location is required
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="salary">Salary Range*</label>
+                <select id="salary" formControlName="salary">
+                  <option value="">Select Salary Range</option>
+                  <option *ngFor="let range of salaryRanges" [value]="range">{{ range }}</option>
+                </select>
+                <div class="error-message" *ngIf="jobPostForm.get('salary')?.invalid && jobPostForm.get('salary')?.touched">
+                  Salary range is required
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="experience">Experience Required*</label>
+                <select id="experience" formControlName="experience">
+                  <option value="">Select Experience</option>
+                  <option *ngFor="let exp of experiences" [value]="exp">{{ exp }}</option>
+                </select>
+                <div class="error-message" *ngIf="jobPostForm.get('experience')?.invalid && jobPostForm.get('experience')?.touched">
+                  Experience is required
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="jobType">Job Type*</label>
+                <select id="jobType" formControlName="jobType">
+                  <option *ngFor="let type of jobTypes" [value]="type">{{ type }}</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="workMode">Work Mode*</label>
+                <select id="workMode" formControlName="workMode">
+                  <option *ngFor="let mode of workModes" [value]="mode">{{ mode }}</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="deadline">Application Deadline*</label>
+                <input type="date" id="deadline" formControlName="deadline">
+                <div class="error-message" *ngIf="jobPostForm.get('deadline')?.invalid && jobPostForm.get('deadline')?.touched">
+                  Deadline is required
+                </div>
+              </div>
+              
+              <div class="form-group full-width">
+                <label for="skills">Required Skills* (comma separated)</label>
+                <input type="text" id="skills" formControlName="skills" placeholder="e.g., Angular, TypeScript, HTML, CSS">
+                <div class="error-message" *ngIf="jobPostForm.get('skills')?.invalid && jobPostForm.get('skills')?.touched">
+                  Skills are required
+                </div>
+              </div>
+              
+              <div class="form-group full-width">
+                <label for="description">Job Description*</label>
+                <textarea id="description" rows="5" formControlName="description" placeholder="Describe the job responsibilities, requirements, and benefits..."></textarea>
+                <div class="error-message" *ngIf="jobPostForm.get('description')?.invalid && jobPostForm.get('description')?.touched">
+                  Job description is required
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-actions">
+              <button type="button" class="btn-secondary" (click)="toggleJobPostForm()">Cancel</button>
+              <button type="submit" class="btn-primary" [disabled]="jobPostForm.invalid">Post Job</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Jobs Section with Filters -->
+    <div class="jobs-section">
+      <div class="filters-panel">
+        <h3>Filter Jobs</h3>
+        <div class="filter-groups">
+          <div class="filter-group">
+            <label>Location</label>
+            <select [(ngModel)]="filters.location" (change)="applyFilters()">
+              <option value="">All Locations</option>
+              <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label>Experience</label>
+            <select [(ngModel)]="filters.experience" (change)="applyFilters()">
+              <option value="">All Experience Levels</option>
+              <option *ngFor="let exp of experiences" [value]="exp">{{ exp }}</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label>Job Type</label>
+            <select [(ngModel)]="filters.jobType" (change)="applyFilters()">
+              <option value="">All Job Types</option>
+              <option *ngFor="let type of jobTypes" [value]="type">{{ type }}</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label>Work Mode</label>
+            <select [(ngModel)]="filters.workMode" (change)="applyFilters()">
+              <option value="">All Work Modes</option>
+              <option *ngFor="let mode of workModes" [value]="mode">{{ mode }}</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label>Salary Range</label>
+            <select [(ngModel)]="filters.salaryRange" (change)="applyFilters()">
+              <option value="">All Salary Ranges</option>
+              <option *ngFor="let range of salaryRanges" [value]="range">{{ range }}</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label>Skills</label>
+            <input type="text" [(ngModel)]="filters.skills" (input)="applyFilters()" placeholder="Search for skills...">
+          </div>
+          
+          <button class="btn-secondary reset-filter" (click)="resetFilters()">Reset Filters</button>
+        </div>
+      </div>
+      
+      <div class="jobs-list">
+        <div class="jobs-header">
+          <h2>Available Jobs ({{ filteredJobs.length }})</h2>
+          <div class="sort-options">
+            <label>Sort by:</label>
+            <select>
+              <option>Latest Jobs</option>
+              <option>Most Relevant</option>
+              <option>Salary - High to Low</option>
+              <option>Experience - Low to High</option>
+            </select>
+          </div>
+        </div>
+        
+        <div *ngIf="filteredJobs.length === 0" class="no-results">
+          <h3>No jobs match your filters</h3>
+          <p>Try adjusting your filter criteria or explore different skills</p>
+        </div>
+        
+        <div class="job-cards">
+          <div class="job-card" *ngFor="let job of filteredJobs">
+            <div class="job-header">
+              <h3>{{ job.title }}</h3>
+              <span class="job-company">{{ job.company }}</span>
+            </div>
+            
+            <div class="job-details">
+              <div class="job-info">
+                <span><i class="location-icon"></i> {{ job.location }}</span>
+                <span><i class="experience-icon"></i> {{ job.experience }}</span>
+                <span><i class="salary-icon"></i> {{ job.salary }}</span>
+              </div>
+              
+              <div class="job-tags">
+                <span class="job-type">{{ job.jobType }}</span>
+                <span class="work-mode">{{ job.workMode }}</span>
+                <span class="deadline">Apply by: {{ job.deadline | date }}</span>
+              </div>
+              
+              <div class="job-skills">
+                <span class="skill-tag" *ngFor="let skill of job.skills">{{ skill }}</span>
+              </div>
+              
+              <p class="job-description">{{ job.description.substring(0, 150) }}...</p>
+            </div>
+            
+            <div class="job-footer">
+              <span class="posted-date">Posted: {{ job.postedDate | date }}</span>
+              <span class="applicants">{{ job.applicants }} applicants</span>
+              <button class="btn-primary apply-btn">Apply Now</button>
+              <button class="btn-secondary save-btn">Save</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="pagination">
+          <button class="pagination-btn">Previous</button>
+          <button class="pagination-btn active">1</button>
+          <button class="pagination-btn">2</button>
+          <button class="pagination-btn">3</button>
+          <button class="pagination-btn">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+ <!-- Footer Section -->
+<footer class="container-fluid bg-dark text-white text-center py-3">
+  <div class="footer-content">
+      <div class="footer-nav">
+          <a href="#">About Us</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Help Center</a>
+      </div>
+      <p class="mt-2 mb-0">© JobTalk. All rights reserved.</p>
+  </div>
+</footer>

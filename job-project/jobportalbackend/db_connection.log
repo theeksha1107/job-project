@@ -1,0 +1,147 @@
+2025-05-14 13:55:02,721 - INFO - Uploads directory ensured: uploads
+2025-05-14 13:55:02,731 - INFO - Initialized empty job listings
+2025-05-14 13:55:09,082 - INFO - Uploads directory ensured: uploads
+2025-05-14 13:55:09,090 - INFO - Initialized empty job listings
+2025-05-14 13:57:46,393 - INFO - main.py:45 - Uploads directory ensured: uploads
+2025-05-14 13:57:46,401 - INFO - main.py:381 - Initialized empty job listings
+2025-05-14 13:59:49,326 - INFO - main.py:38 - app_with_enhanced_logging.py:45 - CORS middleware configured
+2025-05-14 13:59:49,326 - INFO - main.py:47 - app_with_enhanced_logging.py:54 - Uploads directory ensured: uploads
+2025-05-14 13:59:49,334 - INFO - main.py:404 - app_with_enhanced_logging.py:385 - Initialized empty job listings
+2025-05-14 14:06:20,282 - INFO - main.py:38 - app_with_enhanced_logging.py:45 - CORS middleware configured
+2025-05-14 14:06:20,282 - INFO - main.py:47 - app_with_enhanced_logging.py:54 - Uploads directory ensured: uploads
+2025-05-14 14:06:20,290 - INFO - main.py:375 - app_with_enhanced_logging.py:385 - Initialized empty job listings
+2025-05-14 14:06:21,734 - INFO - main.py:38 - app_with_enhanced_logging.py:45 - CORS middleware configured
+2025-05-14 14:06:21,734 - INFO - main.py:47 - app_with_enhanced_logging.py:54 - Uploads directory ensured: uploads
+2025-05-14 14:06:21,741 - INFO - main.py:403 - app_with_enhanced_logging.py:385 - Initialized empty job listings
+2025-05-14 14:06:23,893 - INFO - main.py:38 - app_with_enhanced_logging.py:45 - CORS middleware configured
+2025-05-14 14:06:23,893 - INFO - main.py:47 - app_with_enhanced_logging.py:54 - Uploads directory ensured: uploads
+2025-05-14 14:06:23,900 - INFO - main.py:404 - app_with_enhanced_logging.py:385 - Initialized empty job listings
+2025-05-14 14:41:02,461 - INFO - main.py:38 - app_with_enhanced_logging.py:45 - CORS middleware configured
+2025-05-14 14:41:02,461 - INFO - main.py:47 - app_with_enhanced_logging.py:54 - Uploads directory ensured: uploads
+2025-05-14 14:41:02,469 - INFO - main.py:404 - app_with_enhanced_logging.py:385 - Initialized empty job listings
+2025-05-14 14:41:12,585 - INFO - main.py:38 - app_with_enhanced_logging.py:45 - CORS middleware configured
+2025-05-14 14:41:12,585 - INFO - main.py:47 - app_with_enhanced_logging.py:54 - Uploads directory ensured: uploads
+2025-05-14 14:41:12,593 - INFO - main.py:404 - app_with_enhanced_logging.py:385 - Initialized empty job listings
+2025-05-14 14:41:18,985 - INFO - main.py:38 - app_with_enhanced_logging.py:45 - CORS middleware configured
+2025-05-14 14:41:18,985 - INFO - main.py:47 - app_with_enhanced_logging.py:54 - Uploads directory ensured: uploads
+2025-05-14 14:41:18,993 - INFO - main.py:404 - app_with_enhanced_logging.py:385 - Initialized empty job listings
+2025-05-14 14:42:15,667 - INFO - main.py:170 - app_with_enhanced_logging.py:159 - Register attempt for email: stella@gmail.com
+2025-05-14 14:42:15,668 - INFO - database.py:32 - Attempting to connect to MySQL database
+2025-05-14 14:42:15,766 - INFO - database.py:40 - Connection object created
+2025-05-14 14:42:15,766 - INFO - database.py:42 - Successfully connected to MySQL database: 9.1.0
+2025-05-14 14:42:15,766 - INFO - database.py:50 - get_db_connection function execution completed
+2025-05-14 14:42:15,845 - INFO - main.py:197 - app_with_enhanced_logging.py:185 - User stella@gmail.com registered successfully
+2025-05-14 14:42:35,792 - INFO - main.py:204 - app_with_enhanced_logging.py:191 - Login attempt for email: stella@gmail.com
+2025-05-14 14:42:35,793 - INFO - database.py:32 - Attempting to connect to MySQL database
+2025-05-14 14:42:35,809 - INFO - database.py:40 - Connection object created
+2025-05-14 14:42:35,809 - INFO - database.py:42 - Successfully connected to MySQL database: 9.1.0
+2025-05-14 14:42:35,809 - INFO - database.py:50 - get_db_connection function execution completed
+2025-05-14 14:42:35,870 - INFO - main.py:222 - app_with_enhanced_logging.py:208 - User stella@gmail.com logged in successfully
+2025-05-15 11:13:50,436 - INFO - main.py:38 - app_with_enhanced_logging.py:45 - CORS middleware configured
+2025-05-15 11:13:50,437 - INFO - main.py:47 - app_with_enhanced_logging.py:54 - Uploads directory ensured: uploads
+2025-05-15 11:13:50,445 - INFO - main.py:404 - app_with_enhanced_logging.py:385 - Initialized empty job listings
+2025-05-15 11:13:51,388 - INFO - main.py:38 - app_with_enhanced_logging.py:45 - CORS middleware configured
+2025-05-15 11:13:51,388 - INFO - main.py:47 - app_with_enhanced_logging.py:54 - Uploads directory ensured: uploads
+2025-05-15 11:13:51,396 - INFO - main.py:404 - app_with_enhanced_logging.py:385 - Initialized empty job listings
+2025-05-15 11:13:54,677 - INFO - main.py:38 - app_with_enhanced_logging.py:45 - CORS middleware configured
+2025-05-15 11:13:54,677 - INFO - main.py:47 - app_with_enhanced_logging.py:54 - Uploads directory ensured: uploads
+2025-05-15 11:13:54,685 - INFO - main.py:404 - app_with_enhanced_logging.py:385 - Initialized empty job listings
+2025-05-15 11:13:58,469 - INFO - main.py:38 - app_with_enhanced_logging.py:45 - CORS middleware configured
+2025-05-15 11:13:58,469 - INFO - main.py:47 - app_with_enhanced_logging.py:54 - Uploads directory ensured: uploads
+2025-05-15 11:13:58,476 - INFO - main.py:404 - app_with_enhanced_logging.py:385 - Initialized empty job listings
+2025-05-15 12:04:10,919 - INFO - main.py:204 - app_with_enhanced_logging.py:191 - Login attempt for email: jansi@gmail.com
+2025-05-15 12:04:10,920 - INFO - database.py:32 - Attempting to connect to MySQL database
+2025-05-15 12:04:11,027 - INFO - database.py:40 - Connection object created
+2025-05-15 12:04:11,027 - INFO - database.py:42 - Successfully connected to MySQL database: 9.1.0
+2025-05-15 12:04:11,027 - INFO - database.py:50 - get_db_connection function execution completed
+2025-05-15 12:04:11,039 - WARNING - main.py:219 - app_with_enhanced_logging.py:205 - Invalid login attempt for jansi@gmail.com
+2025-05-15 12:04:17,473 - INFO - main.py:204 - app_with_enhanced_logging.py:191 - Login attempt for email: jansi@gmail.com
+2025-05-15 12:04:17,473 - INFO - database.py:32 - Attempting to connect to MySQL database
+2025-05-15 12:04:17,486 - INFO - database.py:40 - Connection object created
+2025-05-15 12:04:17,487 - INFO - database.py:42 - Successfully connected to MySQL database: 9.1.0
+2025-05-15 12:04:17,487 - INFO - database.py:50 - get_db_connection function execution completed
+2025-05-15 12:04:17,494 - WARNING - main.py:219 - app_with_enhanced_logging.py:205 - Invalid login attempt for jansi@gmail.com
+2025-05-19 14:21:47,518 - INFO - main.py:38 - app_with_enhanced_logging.py:45 - CORS middleware configured
+2025-05-19 14:21:47,518 - INFO - main.py:47 - app_with_enhanced_logging.py:54 - Uploads directory ensured: uploads
+2025-05-19 14:21:47,526 - INFO - main.py:404 - app_with_enhanced_logging.py:385 - Initialized empty job listings
+2025-05-19 14:22:13,809 - INFO - main.py:38 - app_with_enhanced_logging.py:45 - CORS middleware configured
+2025-05-19 14:22:13,809 - INFO - main.py:47 - app_with_enhanced_logging.py:54 - Uploads directory ensured: uploads
+2025-05-19 14:22:13,816 - INFO - main.py:404 - app_with_enhanced_logging.py:385 - Initialized empty job listings
+2025-05-19 17:24:41,376 - INFO - main.py:170 - app_with_enhanced_logging.py:159 - Register attempt for email: manyaav9@gamil.com
+2025-05-19 17:24:41,377 - INFO - database.py:32 - Attempting to connect to MySQL database
+2025-05-19 17:24:41,491 - INFO - database.py:40 - Connection object created
+2025-05-19 17:24:41,491 - INFO - database.py:42 - Successfully connected to MySQL database: 9.1.0
+2025-05-19 17:24:41,491 - INFO - database.py:50 - get_db_connection function execution completed
+2025-05-19 17:24:41,569 - INFO - main.py:197 - app_with_enhanced_logging.py:185 - User manyaav9@gamil.com registered successfully
+2025-05-19 17:25:43,784 - INFO - main.py:170 - app_with_enhanced_logging.py:159 - Register attempt for email: theekshareddy11@gmail.com
+2025-05-19 17:25:43,785 - INFO - database.py:32 - Attempting to connect to MySQL database
+2025-05-19 17:25:43,798 - INFO - database.py:40 - Connection object created
+2025-05-19 17:25:43,798 - INFO - database.py:42 - Successfully connected to MySQL database: 9.1.0
+2025-05-19 17:25:43,798 - INFO - database.py:50 - get_db_connection function execution completed
+2025-05-19 17:25:43,850 - INFO - main.py:197 - app_with_enhanced_logging.py:185 - User theekshareddy11@gmail.com registered successfully
+2025-05-19 17:25:58,987 - INFO - main.py:227 - app_with_enhanced_logging.py:213 - OTP request for email: theekshareddy11@gmail.com
+2025-05-19 17:25:58,987 - INFO - database.py:32 - Attempting to connect to MySQL database
+2025-05-19 17:25:58,997 - INFO - database.py:40 - Connection object created
+2025-05-19 17:25:58,997 - INFO - database.py:42 - Successfully connected to MySQL database: 9.1.0
+2025-05-19 17:25:58,998 - INFO - database.py:50 - get_db_connection function execution completed
+2025-05-19 17:26:06,249 - INFO - main.py:71 - app_with_enhanced_logging.py:77 - Email sent successfully to theekshareddy11@gmail.com
+2025-05-19 17:26:06,251 - INFO - main.py:252 - app_with_enhanced_logging.py:237 - OTP sent successfully to theekshareddy11@gmail.com
+2025-05-19 17:26:47,992 - INFO - main.py:260 - app_with_enhanced_logging.py:245 - OTP verification attempt for email: theekshareddy11@gmail.com
+2025-05-19 17:26:47,992 - INFO - main.py:272 - app_with_enhanced_logging.py:257 - OTP verified successfully for theekshareddy11@gmail.com
+2025-05-19 17:50:32,843 - INFO - main.py:227 - app_with_enhanced_logging.py:213 - OTP request for email: theekshareddy11@gmail.com
+2025-05-19 17:50:32,844 - INFO - database.py:32 - Attempting to connect to MySQL database
+2025-05-19 17:50:32,921 - INFO - database.py:40 - Connection object created
+2025-05-19 17:50:32,921 - INFO - database.py:42 - Successfully connected to MySQL database: 9.1.0
+2025-05-19 17:50:32,921 - INFO - database.py:50 - get_db_connection function execution completed
+2025-05-19 17:50:36,068 - INFO - main.py:71 - app_with_enhanced_logging.py:77 - Email sent successfully to theekshareddy11@gmail.com
+2025-05-19 17:50:36,068 - INFO - main.py:252 - app_with_enhanced_logging.py:237 - OTP sent successfully to theekshareddy11@gmail.com
+2025-05-19 17:50:57,930 - INFO - main.py:260 - app_with_enhanced_logging.py:245 - OTP verification attempt for email: theekshareddy11@gmail.com
+2025-05-19 17:50:57,930 - INFO - main.py:272 - app_with_enhanced_logging.py:257 - OTP verified successfully for theekshareddy11@gmail.com
+2025-05-19 17:58:33,744 - INFO - main.py:227 - app_with_enhanced_logging.py:213 - OTP request for email: theekshareddy11@gmail.com
+2025-05-19 17:58:33,746 - INFO - database.py:32 - Attempting to connect to MySQL database
+2025-05-19 17:58:33,817 - INFO - database.py:40 - Connection object created
+2025-05-19 17:58:33,817 - INFO - database.py:42 - Successfully connected to MySQL database: 9.1.0
+2025-05-19 17:58:33,817 - INFO - database.py:50 - get_db_connection function execution completed
+2025-05-19 17:58:37,199 - INFO - main.py:71 - app_with_enhanced_logging.py:77 - Email sent successfully to theekshareddy11@gmail.com
+2025-05-19 17:58:37,200 - INFO - main.py:252 - app_with_enhanced_logging.py:237 - OTP sent successfully to theekshareddy11@gmail.com
+2025-05-19 17:58:51,751 - INFO - main.py:260 - app_with_enhanced_logging.py:245 - OTP verification attempt for email: theekshareddy11@gmail.com
+2025-05-19 17:58:51,752 - INFO - main.py:272 - app_with_enhanced_logging.py:257 - OTP verified successfully for theekshareddy11@gmail.com
+2025-05-19 18:04:05,410 - INFO - main.py:204 - app_with_enhanced_logging.py:191 - Login attempt for email: theekshareddy11@gmail.com
+2025-05-19 18:04:05,411 - INFO - database.py:32 - Attempting to connect to MySQL database
+2025-05-19 18:04:05,460 - INFO - database.py:40 - Connection object created
+2025-05-19 18:04:05,460 - INFO - database.py:42 - Successfully connected to MySQL database: 9.1.0
+2025-05-19 18:04:05,460 - INFO - database.py:50 - get_db_connection function execution completed
+2025-05-19 18:04:05,517 - INFO - main.py:222 - app_with_enhanced_logging.py:208 - User theekshareddy11@gmail.com logged in successfully
+2025-05-20 10:08:34,627 - INFO - main.py:227 - app_with_enhanced_logging.py:213 - OTP request for email: theekshareddy11@gmail.com
+2025-05-20 10:08:34,630 - INFO - database.py:32 - Attempting to connect to MySQL database
+2025-05-20 10:08:34,706 - INFO - database.py:40 - Connection object created
+2025-05-20 10:08:34,706 - INFO - database.py:42 - Successfully connected to MySQL database: 9.1.0
+2025-05-20 10:08:34,706 - INFO - database.py:50 - get_db_connection function execution completed
+2025-05-20 10:08:38,136 - INFO - main.py:71 - app_with_enhanced_logging.py:77 - Email sent successfully to theekshareddy11@gmail.com
+2025-05-20 10:08:38,136 - INFO - main.py:252 - app_with_enhanced_logging.py:237 - OTP sent successfully to theekshareddy11@gmail.com
+2025-05-20 10:09:05,575 - INFO - main.py:260 - app_with_enhanced_logging.py:245 - OTP verification attempt for email: theekshareddy11@gmail.com
+2025-05-20 10:09:05,575 - INFO - main.py:272 - app_with_enhanced_logging.py:257 - OTP verified successfully for theekshareddy11@gmail.com
+2025-05-20 10:10:50,112 - INFO - main.py:204 - app_with_enhanced_logging.py:191 - Login attempt for email: theekshareddy11@gmail.com
+2025-05-20 10:10:50,116 - INFO - database.py:32 - Attempting to connect to MySQL database
+2025-05-20 10:10:50,130 - INFO - database.py:40 - Connection object created
+2025-05-20 10:10:50,130 - INFO - database.py:42 - Successfully connected to MySQL database: 9.1.0
+2025-05-20 10:10:50,130 - INFO - database.py:50 - get_db_connection function execution completed
+2025-05-20 10:10:50,184 - INFO - main.py:222 - app_with_enhanced_logging.py:208 - User theekshareddy11@gmail.com logged in successfully
+2025-05-20 10:11:03,832 - INFO - main.py:552 - app_with_enhanced_logging.py:516 - Fetching all candidate profiles
+2025-05-20 10:11:03,832 - INFO - database.py:32 - Attempting to connect to MySQL database
+2025-05-20 10:11:03,844 - INFO - database.py:40 - Connection object created
+2025-05-20 10:11:03,845 - INFO - database.py:42 - Successfully connected to MySQL database: 9.1.0
+2025-05-20 10:11:03,845 - INFO - database.py:50 - get_db_connection function execution completed
+2025-05-20 10:11:03,863 - INFO - main.py:591 - app_with_enhanced_logging.py:551 - Retrieved 1 candidate profiles
+2025-05-20 10:13:16,630 - INFO - main.py:552 - app_with_enhanced_logging.py:516 - Fetching all candidate profiles
+2025-05-20 10:13:16,632 - INFO - database.py:32 - Attempting to connect to MySQL database
+2025-05-20 10:13:16,656 - INFO - database.py:40 - Connection object created
+2025-05-20 10:13:16,656 - INFO - database.py:42 - Successfully connected to MySQL database: 9.1.0
+2025-05-20 10:13:16,657 - INFO - database.py:50 - get_db_connection function execution completed
+2025-05-20 10:13:16,660 - INFO - main.py:591 - app_with_enhanced_logging.py:551 - Retrieved 1 candidate profiles
+2025-05-20 10:14:02,005 - INFO - main.py:552 - app_with_enhanced_logging.py:516 - Fetching all candidate profiles
+2025-05-20 10:14:02,005 - INFO - database.py:32 - Attempting to connect to MySQL database
+2025-05-20 10:14:02,021 - INFO - database.py:40 - Connection object created
+2025-05-20 10:14:02,021 - INFO - database.py:42 - Successfully connected to MySQL database: 9.1.0
+2025-05-20 10:14:02,021 - INFO - database.py:50 - get_db_connection function execution completed
+2025-05-20 10:14:02,024 - INFO - main.py:591 - app_with_enhanced_logging.py:551 - Retrieved 1 candidate profiles

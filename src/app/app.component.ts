@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core'; 
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { LoggerService } from './services/logger.service'; // Import LoggerService
+import { CommonModule, isPlatformBrowser } from '@angular/common'; 
+import { LoggerService } from './services/logger.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { LoggerService } from './services/logger.service'; // Import LoggerServi
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {  
   title = 'Job Portal';
 
   searchQuery = '';
@@ -24,8 +24,18 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private logger: LoggerService  // Inject LoggerService
+    private logger: LoggerService,
+    @Inject(PLATFORM_ID) private platformId: Object  // <-- Inject platform ID
   ) {}
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      // Safe to use browser APIs
+      const online = navigator.onLine;
+      localStorage.setItem('app_status', online ? 'online' : 'offline');
+      this.logger.log(`Browser is currently ${online ? 'online' : 'offline'}`);
+    }
+  }
 
   toggleFilters(): void {
     this.isExpanded = !this.isExpanded;

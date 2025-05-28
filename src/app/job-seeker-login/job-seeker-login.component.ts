@@ -30,7 +30,7 @@ export class JobSeekerLoginComponent {
 
     this.loading = true;
 
-    this.http.post('http://127.0.0.1:8000/send-otp', { email: this.email }).subscribe({
+    this.http.post('http://jobbackend-c0dgdyg3ceh0hbbv.eastasia-01.azurewebsites.net/send-otp', { email: this.email }).subscribe({
       next: (response) => {
         console.log('OTP sent:', response);
         alert('OTP sent successfully. Check your email.');
@@ -54,7 +54,7 @@ export class JobSeekerLoginComponent {
 
     this.loading = true;
 
-    this.http.post('http://127.0.0.1:8000/verify-otp', { email: this.email, otp: this.otp, password: this.password }).subscribe({
+    this.http.post('http://jobbackend-c0dgdyg3ceh0hbbv.eastasia-01.azurewebsites.net/verify-otp', { email: this.email, otp: this.otp, password: this.password }).subscribe({
       next: (response) => {
         console.log('OTP verified:', response);
         alert('Login successful');

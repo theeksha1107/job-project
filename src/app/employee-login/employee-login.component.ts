@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router, RouterModule,ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class EmployeeLoginComponent implements OnInit {
 
     const loginData = { email: this.email, password: this.password };
 
-    this.http.post('http://127.0.0.1:8000/login', loginData).subscribe({
+    this.http.post(`${environment.apiUrl}login`, loginData).subscribe({
       next: (response) => {
         console.log('Login successful:', response);
         alert('Login successful');

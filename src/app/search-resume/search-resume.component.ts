@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 interface Candidate {
   id: number;
@@ -85,7 +86,7 @@ export class SearchResumeComponent implements OnInit {
   }
 
   fetchCandidates(): Observable<Candidate[]> {
-    return this.http.get<Candidate[]>('http://localhost:8000/profiles');
+    return this.http.get<Candidate[]>(`${environment.apiUrl}profiles`);
   }
 
   search(): void {

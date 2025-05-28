@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-job-seeker-login',
@@ -30,7 +31,7 @@ export class JobSeekerLoginComponent {
 
     this.loading = true;
 
-    this.http.post('http://jobbackend-c0dgdyg3ceh0hbbv.eastasia-01.azurewebsites.net/send-otp', { email: this.email }).subscribe({
+    this.http.post(`${environment.apiUrl}send-otp`, { email: this.email }).subscribe({
       next: (response) => {
         console.log('OTP sent:', response);
         alert('OTP sent successfully. Check your email.');

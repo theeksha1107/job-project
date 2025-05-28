@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,7 @@ export class AuthService {
 
   // Simulate login by calling a login endpoint (replace with actual endpoint)
   login(credentials: { email: string; password: string }): Observable<any> {
-    return this.http.post('http://127.0.0.1:8000/login', credentials).pipe(
+    return this.http.post(`${environment.apiUrl}login`, credentials).pipe(
       tap((response: any) => {
         if (response && response.name) {
           const userDetails = {

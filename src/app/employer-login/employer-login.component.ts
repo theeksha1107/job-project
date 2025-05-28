@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router,RouterModule, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-employer-login',
@@ -33,7 +34,7 @@ export class EmployerLoginComponent implements OnInit  {
   
       const loginData = { email: this.email, password: this.password };
   
-      this.http.post('http://jobbackend-c0dgdyg3ceh0hbbv.eastasia-01.azurewebsites.net/login', loginData).subscribe({
+      this.http.post(`${environment.apiUrl}login`, loginData).subscribe({
         next: (response) => {
           console.log('Login successful:', response);
           alert('Login successful');

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router,RouterModule} from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class SignupComponent {
       confirm_password: confirmPasswordInput.value
     };
 
-    this.http.post('http://jobbackend-c0dgdyg3ceh0hbbv.eastasia-01.azurewebsites.net/register', registerData).subscribe({
+    this.http.post(`${environment.apiUrl}register`, registerData).subscribe({
       next: (response) => {
         console.log('Registration successful:', response);
         if (response) {  // Ensure response is valid

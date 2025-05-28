@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://127.0.0.1:8001/jobportaltest' // For local testing
+    apiUrl: 'https://jobbackend-c0dgdyg3ceh0hbbv.eastasia-01.azurewebsites.net/'
   };

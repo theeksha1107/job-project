@@ -16,6 +16,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
  
 @Component({
   selector: 'app-profile',
@@ -127,7 +128,7 @@ export class ProfileComponent implements OnInit {
       ? `university=${encodeURIComponent(this.profile.university)}`
       : `phone_number=${encodeURIComponent(this.profile.mobileNumber)}`;
  
-    this.http.get(`http://127.0.0.1:8000/get-profile?${queryParams}`).subscribe({
+    this.http.get(`${environment.apiUrl}get-profile?${queryParams}`).subscribe({
       next: (data: any) => {
         if (data) {
           this.profile = { ...this.profile, ...data };
@@ -165,7 +166,7 @@ export class ProfileComponent implements OnInit {
     this.profile = { ...this.profile, ...this.profileForm.value };
     const profileToSave = { ...this.profile, name: `${this.profile.firstName} ${this.profile.lastName}` };
  
-    this.http.post('http://127.0.0.1:8000/save-profile', profileToSave).subscribe({
+    this.http.post(`${environment.apiUrl}save-profile`, profileToSave).subscribe({
       next: (response: any) => {
         this.snackBar.open('Profile saved successfully!', 'Close', { duration: 3000 });
         this.isEditing = false;
@@ -189,7 +190,7 @@ export class ProfileComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', file);
  
-      this.http.post('http://127.0.0.1:8000/upload-resume', formData).subscribe({
+      this.http.post(`${environment.apiUrl}upload-resume`, formData).subscribe({
         next: (response: any) => {
           this.profile.resumeFileName = response.fileName;
           this.snackBar.open(`Resume uploaded: ${response.fileName}`, 'Close', { duration: 3000 });
@@ -242,7 +243,7 @@ export class ProfileComponent implements OnInit {
   }
  
   downloadResume() {
-    this.http.get(`http://127.0.0.1:8000/download-resume?fileName=${this.profile.resumeFileName}`, { responseType: 'blob' }).subscribe({
+    this.http.get(`${environment.apiUrl}download-resume?fileName=${this.profile.resumeFileName}`, { responseType: 'blob' }).subscribe({
       next: (blob) => {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');

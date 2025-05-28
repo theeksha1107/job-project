@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-forgot-password',
@@ -35,7 +36,7 @@ export class ForgotPasswordComponent {
     if (this.forgotPasswordForm.invalid) return;
     this.email = this.forgotPasswordForm.value.email;
 
-    this.http.post('http://jobbackend-c0dgdyg3ceh0hbbv.eastasia-01.azurewebsites.net/forgot-password', { email: this.email }).subscribe(
+    this.http.post(`${environment.apiUrl}forgot-password`, { email: this.email }).subscribe(
       () => {
         alert('OTP sent to your email!');
         this.step = 2;

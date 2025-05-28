@@ -35,7 +35,7 @@ export class ForgotPasswordComponent {
     if (this.forgotPasswordForm.invalid) return;
     this.email = this.forgotPasswordForm.value.email;
 
-    this.http.post('http://localhost:8000/forgot-password', { email: this.email }).subscribe(
+    this.http.post('http://jobbackend-c0dgdyg3ceh0hbbv.eastasia-01.azurewebsites.net/forgot-password', { email: this.email }).subscribe(
       () => {
         alert('OTP sent to your email!');
         this.step = 2;

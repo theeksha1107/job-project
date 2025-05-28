@@ -33,7 +33,7 @@ export class EmployerLoginComponent implements OnInit  {
   
       const loginData = { email: this.email, password: this.password };
   
-      this.http.post('http://localhost:8000/login', loginData).subscribe({
+      this.http.post('http://jobbackend-c0dgdyg3ceh0hbbv.eastasia-01.azurewebsites.net/login', loginData).subscribe({
         next: (response) => {
           console.log('Login successful:', response);
           alert('Login successful');

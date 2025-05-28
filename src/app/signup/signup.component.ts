@@ -23,7 +23,7 @@ export class SignupComponent {
       confirm_password: confirmPasswordInput.value
     };
 
-    this.http.post('http://localhost:8000/register', registerData).subscribe({
+    this.http.post('http://jobbackend-c0dgdyg3ceh0hbbv.eastasia-01.azurewebsites.net/register', registerData).subscribe({
       next: (response) => {
         console.log('Registration successful:', response);
         if (response) {  // Ensure response is valid

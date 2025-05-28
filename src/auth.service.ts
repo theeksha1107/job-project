@@ -16,6 +16,6 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.post('http://127.0.0.1:8000/logout', {});
+    return this.http.post('http://jobbackend-c0dgdyg3ceh0hbbv.eastasia-01.azurewebsites.net/logout', {});
   }
 }
